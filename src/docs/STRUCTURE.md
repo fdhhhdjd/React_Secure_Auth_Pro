@@ -1,9 +1,5 @@
 # ⚛️ Folder Structures in React Projects
 
-This document outlines the consistent meanings behind the folder names used in this project. The purpose is to maintain a clear and organized codebase, making it easier for developers to navigate and understand the project's structure.
-
-# Project Structure Documentation
-
 This document provides an overview of the folder and file structure for the project. The structure is designed to organize the codebase in a way that is easy to navigate and understand.
 
 
@@ -11,209 +7,91 @@ This document provides an overview of the folder and file structure for the proj
 
 Our project is structured to facilitate easy navigation and logical separation of concerns. Below is a description of each top-level directory and its intended purpose.
 
-## Images
-```
+```plaintext
 .
-├── .eslintrc.cjs
-├── .gitignore
-├── index.html
-├── package.json
-├── public/
-├── README.md
-├── src/
-│   ├── App.css
-│   ├── App.jsx
-│   ├── assets/
-│   ├── config/
-│   │   ├── configs/
-│   │   └── constants/
-│   ├── data/
-│   │   ├── api/
-│   │   ├── helpers/
-│   │   ├── services/
-│   │   └── states/
-│   ├── docs/
-│   │   └── folder-structure/
-│   │       └── STRUCTURE.md
-│   ├── guards/
-│   ├── index.css
-│   ├── logic/
-│   │   ├── contexts/
-│   │   ├── hocs/
-│   │   ├── hooks/
-│   │   └── lib/
-│   │       └── utils/
-│   ├── main.jsx
-│   ├── pages/
-│   ├── plugins/
-│   ├── routes/
-│   │   └── router.jsx
-│   └── ui/
-│       ├── components/
-│       ├── icons/
-│       ├── layouts/
-│       └── styles/
-├── tests/
-└── vite.config.js
+├── .eslintrc.cjs          # ESLint configuration for code quality and consistency.
+├── .gitignore             # Specifies untracked files to ignore.
+├── constants/             # Contains constant values used throughout the project.
+├── index.html             # Entry point HTML file for the web application.
+├── package.json           # Project metadata and dependency management.
+├── public/                # Publicly accessible static files (images, fonts, icons).
+├── README.md              # Project overview, setup instructions, and other essential information.
+├── src/                   # Main source code directory.
+│   ├── App.css            # Main CSS file for App component styling.
+│   ├── App.jsx            # Main React component, entry point of the React app.
+│   ├── assets/            # Static assets like fonts and images.
+│   │   ├── fonts/
+│   │   ├── images/
+│   ├── components/        # Reusable React components.
+│   │   ├── common/
+│   │   ├── ui/
+│   ├── configs/           # Application setup configurations and constants.
+│   ├── constants/         # Application-wide constant values.
+│   ├── contexts/          # React context providers for state management.
+│   ├── docs/              # Project documentation.
+│   │   ├── folder-structure/
+│   │   │   └── STRUCTURE.md
+│   ├── features/          # Feature-specific components and logic.
+│   ├── guards/            # Route guards for conditional navigation.
+│   ├── helpers/           # Utility functions and helpers.
+│   ├── hooks/             # Custom React hooks.
+│   ├── index.css          # Global CSS file.
+│   ├── layouts/           # Components defining page layouts.
+│   ├── lib/               # Library code and third-party dependencies.
+│   ├── main.jsx           # Entry point for initializing the React app.
+│   ├── pages/             # Components representing entire pages.
+│   ├── routes/            # Application routing configuration.
+│   ├── services/          # Backend API calls and business logic services.
+│   ├── states/            # State management logic and structures.
+│   ├── styles/            # Global styles and CSS/SCSS files.
+│   ├── tests/             # Test files and testing utilities.
+│   ├── utils/             # General utility functions and helpers.
+├── tests/                 # Project-wide tests outside the src directory.
+├── vite.config.js         # Vite build tool configuration.
 
 ```
 
-### `.eslintrc.cjs`
-
-- Contains the configuration for ESLint, ensuring code quality and consistency across the project.
-
-### `.gitignore`
-
-- Specifies intentionally untracked files that Git should ignore.
-
-### `index.html`
-
-- The entry point HTML file for the web application, where the React app is mounted.
-
-### `package.json`
-
-- Lists the project dependencies and scripts for running and building the project.
-
-### `README.md`
-
-- Provides an overview of the project, including setup instructions and general information.
-
-### `vite.config.js`
-
-- Configuration file for Vite, our build and development tool.
-
-## `public/`
-
-- Contains static assets like images and fonts that are used directly by `index.html`.
-
-## `src/`
-
-The main source directory, containing the bulk of our application code.
-
-### `App.css`
-
-- The main stylesheet for the application's root component.
-
-### `App.jsx`
-
-- The root React component that serves as the entry point for the React application.
-
-### `assets/`
-
-- Houses static assets such as images and fonts used within the application.
-
-### `config/`
-
-- Central location for configuration files and constants.
-
-#### `configs/`
-
-- Contains application-specific configurations, such as environment variables.
-
-#### `constants/`
-
-- Stores constant values used throughout the application.
-
-### `data/`
-
-- Manages data handling, including API interactions and state management.
-
-#### `api/`
-
-- Functions and utilities for server communication.
-
-#### `helpers/`
-
-- Business-specific utilities and helper functions.
-
-#### `services/`
-
-- Encapsulates the main business logic and application services.
-
-#### `states/`
-
-- Manages global application state.
-
-### `docs/`
-
-- Contains documentation related to the project.
-
-#### `folder-structure/`
-
-- Additional documentation on specific aspects of the project structure.
-
-### `guards/`
-
-- Route guards for protecting certain parts of the application.
-
-### `index.css`
-
-- Global stylesheet for the application.
-
-### `logic/`
-
-- Contains business logic, utilities, and custom hooks.
-
-#### `contexts/`
-
-- React Contexts and Providers for managing global state.
-
-#### `hocs/`
-
-- Higher-order Components for enhancing component functionality.
-
-#### `hooks/`
-
-- Custom React hooks for shared logic across components.
-
-#### `lib/`
-
-- Utilities related to specific technologies.
-
-#### `utils/`
-
-- General utilities for tasks like string manipulation and calculations.
-
-### `main.jsx`
-
-- The main JavaScript entry point for the React application.
-
-### `pages/`
-
-- Entry-point components for different pages of the application.
-
-### `plugins/`
-
-- Third-party plugins and integrations.
-
-### `routes/`
-
-- Manages routing for the application.
-
-#### `router.jsx`
-
-- Defines the application routes.
-
-### `tests/`
-
-- Contains tests for the application code.
-
-### `ui/`
-
-- UI-related code, including components, icons, and layouts.
-
-#### `components/`
-
-- React components that serve as the main UI building blocks.
-
-#### `icons/`
-
-- SVG icons for use within the application.
-
-#### `layouts/`
-
-- Defines the layout structure for pages and components.
-
-#### `styles/`
-
-- Contains global CSS or CSS-in-JS styles for the application.
+### Directory Descriptions
+
+- **`.eslintrc.cjs`**: Configuration file for ESLint to ensure code quality and consistency.
+  
+- **`.gitignore`**: Specifies intentionally untracked files to ignore.
+  
+- **`constants/`**: Contains constant values used throughout the project.
+  
+- **`index.html`**: The entry point HTML file for the web application.
+  
+- **`package.json`**: Contains metadata relevant to the project and manages the project's dependencies, scripts, and versions.
+
+- **`public/`**: Static files such as images, fonts, and icons that are publicly accessible.
+  
+- **`README.md`**: A markdown file containing the project's overview, setup instructions, and other important information.
+  
+- **`src/`**: The source directory containing the project's main codebase.
+    - **`App.css`**: The main CSS file for styling the App component.
+    - **`App.jsx`**: The main React component that serves as the entry point for the React application.
+    - **`assets/`**: Contains static assets such as fonts and images.
+    - **`components/`**: Reusable React components.
+    - **`configs/`**: Configuration files and constants specific to the application's setup.
+    - **`constants/`**: Application-wide constant values.
+    - **`contexts/`**: React context providers for state management across components.
+    - **`docs/`**: Documentation related to the project.
+    - **`features/`**: Feature-specific components and logic.
+    - **`guards/`**: Route guards for handling navigation based on certain conditions.
+    - **`helpers/`**: Utility functions and helpers.
+    - **`hooks/`**: Custom React hooks.
+    - **`layouts/`**: Components that define different page layouts.
+    - **`lib/`**: Library code and third-party dependencies.
+    - **`pages/`**: Components representing entire pages.
+    - **`routes/`**: Routing configuration for navigating between pages.
+    - **`services/`**: Services for handling backend API calls and business logic.
+    - **`states/`**: State management logic.
+    - **`styles/`**: Global styles and CSS/SCSS files.
+    - **`tests/`**: Test files and testing utilities.
+    - **`utils/`**: Utility functions and helpers that are not specific to any feature or component.
+  
+- **`tests/`**: Contains tests for the project outside of the `src` directory.
+  
+- **`vite.config.js`**: Configuration file for Vite, the build tool used by the project.
+
+This structure is designed to promote a clean and organized codebase, making it easier for developers to navigate and contribute to the project.
