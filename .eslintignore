@@ -32,3 +32,5 @@ out/
 # Other common directories to ignore
 public/
 coverage/
+
+vite.config.js

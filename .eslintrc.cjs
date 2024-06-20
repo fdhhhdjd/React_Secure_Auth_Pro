@@ -24,6 +24,7 @@ module.exports = {
     'react/jsx-no-target-blank': 'off',
     'react/function-component-definition': 'off',
     'prettier/prettier': ['error'],
+    'react/jsx-fragments': ['error', 'element'],
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
@@ -94,5 +95,10 @@ module.exports = {
         classPropertiesAllowed: false,
       },
     ],
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
 };
