@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { HEADER_KEYS, USER_KEYS } from '@/configs';
-import { TIME_CONSTANTS } from '@/constants';
+import { HttpStatusCode, TIME_CONSTANTS } from '@/constants';
 import {
   decryptAndRetrieveKey,
   encryptAndStoreKey,
@@ -64,6 +64,7 @@ const renewToken = async () => {
       },
     });
     const newToken = response?.data?.metadata?.accessToken;
+    setItem(USER_KEYS.USER_TOKEN, encryptAndStoreKey(newToken));
     return newToken;
   } catch (error) {
     console.error('Failed to renew token:', error);
@@ -92,7 +93,7 @@ axiosInstance.interceptors.response.use(
     const originalRequest = error.config;
     if (
       error.response &&
-      error.response.status === 401 &&
+      error.response.status === HttpStatusCode.UNAUTHORIZED &&
       !originalRequest._retry &&
       !originalRequest.url.includes('/auth')
     ) {
