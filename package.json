@@ -6,14 +6,44 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint ./src --ext .cjs,.mjs,.js,.jsx,.cts,.mts --fix --ignore-path .gitignore && echo \"Tai Dev Check Eslint ✅\"",
+    "lint:fix": "eslint . --fix --ext .js,.jsx",
+    "format": "prettier --write src/**/*.{js,jsx}",
+    "prepare": "husky install",
+    "pre-commit": "echo \"[Husky] pre-commit\"",
+    "lint-staged": "lint-staged"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "npm run lint",
+      "npm run format"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint-staged"
+    }
+  },
+  "commitlint": {
+    "rules": {
+      "header-max-length": [
+        2,
+        "always",
+        130
+      ]
+    },
+    "extends": [
+      "./commitlint.config.js"
+    ]
   },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.2.1",
@@ -21,6 +51,8 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7",
     "prettier": "^3.3.2",
     "vite": "^5.2.0"
   }
