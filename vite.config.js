@@ -32,23 +32,24 @@ export default defineConfig(({ mode }) => {
       port: 5173,
       host: true,
       strictPort: true,
-      // proxy: {
-      //   '/api/v1': process.env.VITE_BACKEND_URL,
-      // },
+      proxy: {
+        '/v1': env.API_URL,
+      },
       watch: {
         usePolling: true,
       },
     },
     base: '/',
     resolve: {
+      extensions: ['.js', '.jsx', '.json'], // Add other extensions you need.
       alias: [
-        {
-          find: '@images',
-          replacement: fileURLToPath(new URL('./src/assets', import.meta.url)),
-        },
         {
           find: '@',
           replacement: fileURLToPath(new URL('./src', import.meta.url)),
+        },
+        {
+          find: '@images',
+          replacement: fileURLToPath(new URL('./src/assets', import.meta.url)),
         },
         {
           find: '@components',

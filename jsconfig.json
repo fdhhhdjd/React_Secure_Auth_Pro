@@ -7,5 +7,5 @@
       "@components/*": ["./src/components/*"]
     }
   },
-  "include": ["src/**/*.jsx"]
+  "include": ["src/**/*.js", "src/**/*.jsx"]
 }

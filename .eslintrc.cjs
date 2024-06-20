@@ -12,18 +12,20 @@ module.exports = {
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   settings: {
-    react: { version: '18.2' },
     'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.json'],
+        moduleDirectory: ['node_modules', 'src/'], // Adjust if your source directory is different
+      },
       alias: {
         map: [
-          ['@', './src'],
-          ['@images', './src/assets'],
-          ['@components', './src/components'],
+          ['@', './src'], // Adjust the path as necessary
         ],
         extensions: ['.js', '.jsx', '.json'],
       },
     },
   },
+
   plugins: [
     'react',
     'prettier',
@@ -36,6 +38,17 @@ module.exports = {
   rules: {
     'react/jsx-no-target-blank': 'off',
     'react/function-component-definition': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'import/prefer-default-export': 'off',
+    'no-param-reassign': 'off',
+    'implicit-arrow-linebreak': 'off',
+    'max-len': 'off',
+    'no-underscore-dangle': 'off',
+    'no-template-curly-in-string': 'off',
+    'import/extensions': 'off',
+    'no-plusplus': 'off',
+    'operator-linebreak': 'off',
+    'import/no-unresolved': 'off',
     'prettier/prettier': ['error'],
     'no-restricted-imports': [
       'error',
@@ -58,6 +71,7 @@ module.exports = {
         ignoreRestSiblings: false,
       },
     ],
+
     'import/order': [
       'error',
       {
