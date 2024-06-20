@@ -50,6 +50,7 @@ module.exports = {
     'operator-linebreak': 'off',
     'import/no-unresolved': 'off',
     'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
     'prettier/prettier': ['error'],
     'no-restricted-imports': [
       'error',
