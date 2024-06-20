@@ -11,7 +11,9 @@ Our project is structured to facilitate easy navigation and logical separation o
 .
 ├── .eslintrc.cjs          # ESLint configuration for code quality and consistency.
 ├── .gitignore             # Specifies untracked files to ignore.
-├── constants/             # Contains constant values used throughout the project.
+├── docs/              # Project documentation.
+│   ├── folder-structure/
+│   │   └── STRUCTURE.md
 ├── index.html             # Entry point HTML file for the web application.
 ├── package.json           # Project metadata and dependency management.
 ├── public/                # Publicly accessible static files (images, fonts, icons).
@@ -28,9 +30,6 @@ Our project is structured to facilitate easy navigation and logical separation o
 │   ├── configs/           # Application setup configurations and constants.
 │   ├── constants/         # Application-wide constant values.
 │   ├── contexts/          # React context providers for state management.
-│   ├── docs/              # Project documentation.
-│   │   ├── folder-structure/
-│   │   │   └── STRUCTURE.md
 │   ├── features/          # Feature-specific components and logic.
 │   ├── guards/            # Route guards for conditional navigation.
 │   ├── helpers/           # Utility functions and helpers.
@@ -57,8 +56,8 @@ Our project is structured to facilitate easy navigation and logical separation o
   
 - **`.gitignore`**: Specifies intentionally untracked files to ignore.
   
-- **`constants/`**: Contains constant values used throughout the project.
-  
+- **`docs/`**: Documentation related to the project.
+
 - **`index.html`**: The entry point HTML file for the web application.
   
 - **`package.json`**: Contains metadata relevant to the project and manages the project's dependencies, scripts, and versions.
@@ -75,7 +74,6 @@ Our project is structured to facilitate easy navigation and logical separation o
     - **`configs/`**: Configuration files and constants specific to the application's setup.
     - **`constants/`**: Application-wide constant values.
     - **`contexts/`**: React context providers for state management across components.
-    - **`docs/`**: Documentation related to the project.
     - **`features/`**: Feature-specific components and logic.
     - **`guards/`**: Route guards for handling navigation based on certain conditions.
     - **`helpers/`**: Utility functions and helpers.
