@@ -11,7 +11,19 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
-  settings: { react: { version: '18.2' } },
+  settings: {
+    react: { version: '18.2' },
+    'import/resolver': {
+      alias: {
+        map: [
+          ['@', './src'],
+          ['@images', './src/assets'],
+          ['@components', './src/components'],
+        ],
+        extensions: ['.js', '.jsx', '.json'],
+      },
+    },
+  },
   plugins: [
     'react',
     'prettier',
@@ -19,11 +31,18 @@ module.exports = {
     'import',
     'prefer-arrow',
     'react-refresh',
+    'import',
   ],
   rules: {
     'react/jsx-no-target-blank': 'off',
     'react/function-component-definition': 'off',
     'prettier/prettier': ['error'],
+    'no-restricted-imports': [
+      'error',
+      {
+        patterns: ['./**'],
+      },
+    ],
     'react/jsx-fragments': ['error', 'element'],
     'react-refresh/only-export-components': [
       'warn',
@@ -39,7 +58,6 @@ module.exports = {
         ignoreRestSiblings: false,
       },
     ],
-
     'import/order': [
       'error',
       {
@@ -71,14 +89,12 @@ module.exports = {
         },
       },
     ],
-
     'no-console': [
       'error',
       {
         allow: ['info', 'warn', 'error', 'time', 'timeEnd'],
       },
     ],
-
     'react/jsx-no-bind': [
       'error',
       {
@@ -95,10 +111,5 @@ module.exports = {
         classPropertiesAllowed: false,
       },
     ],
-  },
-  settings: {
-    react: {
-      version: 'detect',
-    },
   },
 };
