@@ -5,3 +5,5 @@ export * from '@/utils/localStorageUtil';
 export * from '@/utils/randomUtils';
 
 export * from '@/utils/stringUtils';
+
+export * from '@/utils/handleResponseUtils';

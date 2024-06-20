@@ -49,6 +49,7 @@ module.exports = {
     'no-plusplus': 'off',
     'operator-linebreak': 'off',
     'import/no-unresolved': 'off',
+    'react/react-in-jsx-scope': 'off',
     'prettier/prettier': ['error'],
     'no-restricted-imports': [
       'error',
