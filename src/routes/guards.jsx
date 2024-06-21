@@ -1,5 +1,6 @@
 import { lazy } from 'react';
 
+import WithAccessNotToken from '@/guards/withAccesNotToken';
 import WithAccessRolePermission from '@/guards/withAccessPermistion';
 import WithAccessRoleRole from '@/guards/withAccessRole';
 import WithAccessToken from '@/guards/withAccesToken';
@@ -8,6 +9,10 @@ import { PERMISSIONS, ROLES } from '@/constants';
 //* APP MAIN
 export const MainLayoutWithAccessToken = WithAccessToken(
   lazy(() => import('@/layouts/mainLayout/MainLayout'))
+);
+
+export const MainLayoutWithAuth = WithAccessNotToken(
+  lazy(() => import('@/layouts/mainAuth/MainAuth'))
 );
 
 //* ABOUT

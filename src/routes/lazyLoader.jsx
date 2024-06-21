@@ -1,21 +1,19 @@
 import { lazy } from 'react';
 
-import WithAccessNotToken from '@/guards/withAccesNotToken';
-import WithAccessToken from '@/guards/withAccesToken';
 import withSuspense from '@/hocs/withSuspense';
-import MainAuth from '@/layouts/mainAuth/MainAuth';
-import MainLayout from '@/layouts/mainLayout/MainLayout';
 import {
   AboutCreateWithPermission,
   AboutEditWithPermission,
   AboutWithAccess,
-  AboutWithPermission
+  AboutWithPermission,
+  MainLayoutWithAccessToken,
+  MainLayoutWithAuth
 } from '@/routes/guards';
 
 //* LAYOUT
-export const LayoutMain = WithAccessToken(MainLayout);
+export const LayoutMain = withSuspense(MainLayoutWithAccessToken);
 
-export const LayoutAuth = WithAccessNotToken(MainAuth);
+export const LayoutAuth = withSuspense(MainLayoutWithAuth);
 
 export const UserLayout = withSuspense(
   lazy(() => import('@/layouts/mainLayout/userLayout/UserLayout'))
