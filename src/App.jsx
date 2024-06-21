@@ -1,10 +1,14 @@
 import { HelmetProvider } from 'react-helmet-async';
 import { Outlet } from 'react-router-dom';
 
+import useRouteTitle from '@/hooks/useRouteTitle';
+import DocumentTitle from '@/layouts/helmet/DocumentTitle';
+
 const App = () => {
+  const title = useRouteTitle();
   return (
     <HelmetProvider>
-      <h1>App</h1>
+      <DocumentTitle title={title} />
       <Outlet />
     </HelmetProvider>
   );

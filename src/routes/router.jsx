@@ -8,7 +8,9 @@ import {
   AboutLayout,
   Error5XX,
   Home,
-  MainLayout,
+  LayoutAuth,
+  LayoutMain,
+  Login,
   Profile,
   Unauthorized,
   User,
@@ -24,7 +26,7 @@ const routes = [
     children: [
       {
         path: '/',
-        element: <MainLayout />,
+        element: <LayoutMain />,
         errorElement: <Error5XX />,
         children: [
           //* Home Page
@@ -72,8 +74,20 @@ const routes = [
 
           //* Unauthorized Page
           {
-            path: 'unauthorized',
+            index: 'unauthorized',
             element: <Unauthorized />,
+            errorElement: <Error5XX />
+          }
+        ]
+      },
+      {
+        path: 'auth',
+        element: <LayoutAuth />,
+        errorElement: <Error5XX />,
+        children: [
+          {
+            path: 'login',
+            element: <Login />,
             errorElement: <Error5XX />
           }
         ]

@@ -1,3 +1,5 @@
+import { Navigate } from 'react-router-dom';
+
 import { PERMISSIONS, ROLES } from '@/constants';
 import { checkRole } from '@/helpers';
 
@@ -11,7 +13,7 @@ const WithAccessRoleRole = (WrappedComponent, requiredRoles = []) => {
     const roleAllowed = checkRole(userRole.role, requiredRoles);
 
     if (!roleAllowed) {
-      return console.info('Role not allowed');
+      return <Navigate to='/unauthorized' />;
     }
     return <WrappedComponent {...props} />;
   };
