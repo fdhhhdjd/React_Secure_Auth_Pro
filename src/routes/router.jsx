@@ -2,19 +2,24 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import NotFound from '@/pages/notfound';
 import {
-  About,
-  AboutCreate,
-  AboutEdit,
-  AboutLayout,
+  DashBoardLayout,
+  Dashboard,
   Error5XX,
-  Home,
   LayoutAuth,
   LayoutMain,
   Login,
   Profile,
   Unauthorized,
   User,
-  UserLayout
+  UserCreate,
+  UserDetail,
+  UserEdit,
+  UserLayout,
+  Vehicle,
+  VehicleCreate,
+  VehicleDetail,
+  VehicleEdit,
+  VehicleLayout
 } from '@/routes/lazyLoader';
 
 import App from '@/App';
@@ -29,12 +34,26 @@ const routes = [
         element: <LayoutMain />,
         errorElement: <Error5XX />,
         children: [
-          //* Home Page
+          //* Profile Page
           {
             index: true,
-            element: <Home />,
+            element: <Profile />,
             errorElement: <Error5XX />
           },
+
+          //* Dashboard Page
+          {
+            path: 'dashboard',
+            element: <DashBoardLayout />,
+            errorElement: <Error5XX />,
+            children: [
+              {
+                index: true,
+                element: <Dashboard />
+              }
+            ]
+          },
+
           //* User Page
           {
             path: 'user',
@@ -47,34 +66,46 @@ const routes = [
               },
               {
                 path: ':id',
-                element: <Profile />
+                element: <UserDetail />
+              },
+              {
+                path: 'create',
+                element: <UserCreate />
+              },
+              {
+                path: 'edit/:id',
+                element: <UserEdit />
               }
             ]
           },
-          // * About Page
+          // * Vehicle Page
           {
-            path: 'about',
-            element: <AboutLayout />,
+            path: 'vehicle',
+            element: <VehicleLayout />,
             errorElement: <Error5XX />,
             children: [
               {
                 index: true,
-                element: <About />
+                element: <Vehicle />
+              },
+              {
+                path: ':id',
+                element: <VehicleDetail />
               },
               {
                 path: 'create',
-                element: <AboutCreate />
+                element: <VehicleCreate />
               },
               {
                 path: 'edit/:id',
-                element: <AboutEdit />
+                element: <VehicleEdit />
               }
             ]
           },
 
           //* Unauthorized Page
           {
-            index: 'unauthorized',
+            path: 'unauthorized',
             element: <Unauthorized />,
             errorElement: <Error5XX />
           }

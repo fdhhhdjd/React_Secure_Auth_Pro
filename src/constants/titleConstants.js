@@ -1,6 +1,7 @@
 export const TITLE_CONSTANTS = {
-  HOME: 'Home Page',
+  DASHBOARD: 'DashBoard Page',
   USER: 'User Page',
-  ABOUT: 'About Page',
+  VEHICLE: 'Vehicle Page',
+  PROFILE: 'Profile Page',
   NOTFOUND: 'NotFound 4xx'
 };

@@ -14,24 +14,65 @@ export const MainLayoutWithAccessToken = WithAccessToken(
 export const MainLayoutWithAuth = WithAccessNotToken(
   lazy(() => import('@/layouts/mainAuth/MainAuth'))
 );
-
-//* ABOUT
-export const AboutWithAccess = WithAccessRoleRole(
-  lazy(() => import('@/layouts/mainLayout/mainAbout/AboutLayout')),
-  [ROLES.ADMIN, ROLES.STAFF]
+//* DASHBOARD
+export const DashBoardWithAccess = WithAccessRoleRole(
+  lazy(() => import('@/layouts/mainLayout/dashBoardLayout/DashBoardLayout')),
+  [ROLES.ADMIN]
 );
 
-export const AboutWithPermission = WithAccessRolePermission(
-  lazy(() => import('@/pages/about')),
+export const DashBoardWithPermission = WithAccessRolePermission(
+  lazy(() => import('@/pages/dashboard')),
   [PERMISSIONS.GET]
 );
 
-export const AboutCreateWithPermission = WithAccessRolePermission(
-  lazy(() => import('@/pages/about/add/index')),
+//* Vehicle
+export const VehicleWithAccess = WithAccessRoleRole(
+  lazy(() => import('@/layouts/mainLayout/VehicleLayout/VehicleLayout')),
+  [ROLES.ADMIN, ROLES.STAFF]
+);
+
+export const VehicleWithPermission = WithAccessRolePermission(
+  lazy(() => import('@/pages/vehicle')),
+  [PERMISSIONS.GET]
+);
+
+export const VehicleDetailEditWithPermission = WithAccessRolePermission(
+  lazy(() => import('@/pages/vehicle/detail')),
+  [PERMISSIONS.GET]
+);
+
+export const VehicleCreateWithPermission = WithAccessRolePermission(
+  lazy(() => import('@/pages/vehicle/create/index')),
   [PERMISSIONS.ADD]
 );
 
-export const AboutEditWithPermission = WithAccessRolePermission(
-  lazy(() => import('@/pages/about/edit')),
+export const VehicleEditWithPermission = WithAccessRolePermission(
+  lazy(() => import('@/pages/vehicle/edit')),
+  [PERMISSIONS.EDIT]
+);
+
+//* USER
+export const UserWithAccess = WithAccessRoleRole(
+  lazy(() => import('@/layouts/mainLayout/userLayout/UserLayout')),
+  [ROLES.ADMIN, ROLES.STAFF]
+);
+
+export const UserWithPermission = WithAccessRolePermission(
+  lazy(() => import('@/pages/user')),
+  [PERMISSIONS.GET]
+);
+
+export const UserDetailEditWithPermission = WithAccessRolePermission(
+  lazy(() => import('@/pages/user/detail')),
+  [PERMISSIONS.GET]
+);
+
+export const UserCreateWithPermission = WithAccessRolePermission(
+  lazy(() => import('@/pages/user/create')),
+  [PERMISSIONS.ADD]
+);
+
+export const UserEditWithPermission = WithAccessRolePermission(
+  lazy(() => import('@/pages/user/edit')),
   [PERMISSIONS.EDIT]
 );

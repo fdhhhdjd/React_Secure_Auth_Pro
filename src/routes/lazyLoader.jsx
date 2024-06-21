@@ -2,12 +2,20 @@ import { lazy } from 'react';
 
 import withSuspense from '@/hocs/withSuspense';
 import {
-  AboutCreateWithPermission,
-  AboutEditWithPermission,
-  AboutWithAccess,
-  AboutWithPermission,
+  DashBoardWithAccess,
+  DashBoardWithPermission,
   MainLayoutWithAccessToken,
-  MainLayoutWithAuth
+  MainLayoutWithAuth,
+  UserCreateWithPermission,
+  UserDetailEditWithPermission,
+  UserEditWithPermission,
+  UserWithAccess,
+  UserWithPermission,
+  VehicleCreateWithPermission,
+  VehicleDetailEditWithPermission,
+  VehicleEditWithPermission,
+  VehicleWithAccess,
+  VehicleWithPermission
 } from '@/routes/guards';
 
 //* LAYOUT
@@ -15,26 +23,29 @@ export const LayoutMain = withSuspense(MainLayoutWithAccessToken);
 
 export const LayoutAuth = withSuspense(MainLayoutWithAuth);
 
-export const UserLayout = withSuspense(
-  lazy(() => import('@/layouts/mainLayout/userLayout/UserLayout'))
-);
-
-export const AboutLayout = withSuspense(AboutWithAccess);
-
 export const Header = withSuspense(lazy(() => import('@/layouts/header')));
 export const Footer = withSuspense(lazy(() => import('@/layouts/footer')));
 
-//* HOME
-export const Home = withSuspense(lazy(() => import('@/pages/home')));
+//* Dashboard
+export const DashBoardLayout = withSuspense(DashBoardWithAccess);
+export const Dashboard = withSuspense(DashBoardWithPermission);
 
 //* USER
-export const User = withSuspense(lazy(() => import('@/pages/user')));
-export const Profile = withSuspense(lazy(() => import('@/pages/user/profile')));
+export const UserLayout = withSuspense(UserWithAccess);
+export const User = withSuspense(UserWithPermission);
+export const UserDetail = withSuspense(UserDetailEditWithPermission);
+export const UserCreate = withSuspense(UserCreateWithPermission);
+export const UserEdit = withSuspense(UserEditWithPermission);
 
-//* ABOUT
-export const About = withSuspense(AboutWithPermission);
-export const AboutCreate = withSuspense(AboutCreateWithPermission);
-export const AboutEdit = withSuspense(AboutEditWithPermission);
+//* PROFILE
+export const Profile = withSuspense(lazy(() => import('@/pages/profile')));
+
+//* VEHICLE
+export const VehicleLayout = withSuspense(VehicleWithAccess);
+export const Vehicle = withSuspense(VehicleWithPermission);
+export const VehicleDetail = withSuspense(VehicleDetailEditWithPermission);
+export const VehicleCreate = withSuspense(VehicleCreateWithPermission);
+export const VehicleEdit = withSuspense(VehicleEditWithPermission);
 
 //* AUTH
 export const Login = withSuspense(lazy(() => import('@/pages/auth/login')));

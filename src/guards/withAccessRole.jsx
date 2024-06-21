@@ -6,7 +6,7 @@ import { checkRole } from '@/helpers';
 const WithAccessRoleRole = (WrappedComponent, requiredRoles = []) => {
   return props => {
     const userRole = {
-      role: ROLES.ADMIN,
+      role: ROLES.STAFF,
       permissions: [PERMISSIONS.GET, PERMISSIONS.ADD]
     };
 
