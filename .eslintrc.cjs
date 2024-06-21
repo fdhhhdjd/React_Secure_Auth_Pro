@@ -67,6 +67,11 @@ module.exports = {
     'no-restricted-syntax': 'off',
     'react/jsx-props-no-spreading': 'off',
     indent: 'off',
+    'jsx-quotes': 'off',
+    'function-paren-newline': 'off',
+    'arrow-body-style': 'off',
+    'import/no-self-import': 'off',
+    'import/no-relative-packages': 'off',
     'prettier/prettier': ['error'],
     'no-restricted-imports': [
       'error',

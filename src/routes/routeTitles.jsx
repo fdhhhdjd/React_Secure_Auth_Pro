@@ -8,7 +8,7 @@ const routeTitles = [
     title: id => `${TITLE_CONSTANTS.USER} | ${id}`
   },
   { pattern: /^\/about$/, title: TITLE_CONSTANTS.ABOUT },
-
+  { pattern: /^\/about\/create$/, title: `${TITLE_CONSTANTS.ABOUT} | Create` },
   { pattern: /.*/, title: TITLE_CONSTANTS.NOTFOUND }
 ];
 

@@ -2,6 +2,9 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import {
   About,
+  AboutCreate,
+  AboutEdit,
+  AboutLayout,
   Error5XX,
   Home,
   MainLayout,
@@ -10,6 +13,10 @@ import {
   User,
   UserLayout
 } from '@/routes/lazyLoader';
+
+// const AboutPageWithAccess = WithAccessRolePermission(About, [PERMISSIONS.GET]);
+// const CreateWithAccess = WithAccessRolePermission(Create, [PERMISSIONS.ADD]);
+// const EditWithAccess = WithAccessRolePermission(Edit, [PERMISSIONS.EDIT]);
 
 const routes = [
   {
@@ -42,8 +49,22 @@ const routes = [
       // * About Page
       {
         path: 'about',
-        element: <About />,
-        errorElement: <Error5XX />
+        element: <AboutLayout />,
+        errorElement: <Error5XX />,
+        children: [
+          {
+            index: true,
+            element: <About />
+          },
+          {
+            path: 'create',
+            element: <AboutCreate />
+          },
+          {
+            path: 'edit/:id',
+            element: <AboutEdit />
+          }
+        ]
       },
       {
         path: '*',

@@ -1,3 +1,3 @@
-const About = () => <h1>About</h1>;
+const About = () => <div>About</div>;
 
 export default About;

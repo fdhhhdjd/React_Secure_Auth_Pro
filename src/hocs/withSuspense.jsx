@@ -1,12 +1,14 @@
-// hoc/withSuspense.jsx
+// hoc/withSuspense.js
 import { Suspense } from 'react';
 
 const withSuspense =
   (Component, fallback = <div>Loading...</div>) =>
-  props => (
-    <Suspense fallback={fallback}>
-      <Component {...props} />
-    </Suspense>
-  );
+  props => {
+    return (
+      <Suspense fallback={fallback}>
+        <Component {...props} />
+      </Suspense>
+    );
+  };
 
 export default withSuspense;
