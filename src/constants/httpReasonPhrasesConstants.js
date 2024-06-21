@@ -69,5 +69,5 @@ export const HttpReason = {
   INSUFFICIENT_STORAGE: 'Insufficient Storage',
   LOOP_DETECTED: 'Loop Detected',
   NOT_EXTENDED: 'Not Extended',
-  NETWORK_AUTHENTICATION_REQUIRED: 'Network Authentication Required',
+  NETWORK_AUTHENTICATION_REQUIRED: 'Network Authentication Required'
 };

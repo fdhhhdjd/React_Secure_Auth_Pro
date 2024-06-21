@@ -1,29 +1,41 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true },
+  env: { browser: true, es2021: true, node: true },
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
     'plugin:prettier/recommended',
-    'airbnb',
+    'airbnb'
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
+  parserOptions: {
+    ecmaVersion: 12,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true
+    }
+  },
   settings: {
     'import/resolver': {
       node: {
         extensions: ['.js', '.jsx', '.json'],
-        moduleDirectory: ['node_modules', 'src/'], // Adjust if your source directory is different
+        moduleDirectory: ['node_modules', 'src/'] // Adjust if your source directory is different
       },
       alias: {
         map: [
-          ['@', './src'], // Adjust the path as necessary
+          ['@', './src'] // Adjust the path as necessary
         ],
-        extensions: ['.js', '.jsx', '.json'],
+        extensions: ['.js', '.jsx', '.json']
       },
+      react: {
+        version: 'detect'
+      }
     },
+    react: {
+      version: 'detect' // Automatically detect the React version
+    }
   },
 
   plugins: [
@@ -33,7 +45,7 @@ module.exports = {
     'import',
     'prefer-arrow',
     'react-refresh',
-    'import',
+    'import'
   ],
   rules: {
     'react/jsx-no-target-blank': 'off',
@@ -51,17 +63,21 @@ module.exports = {
     'import/no-unresolved': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
+    'import/no-cycle': 'off',
+    'no-restricted-syntax': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    indent: 'off',
     'prettier/prettier': ['error'],
     'no-restricted-imports': [
       'error',
       {
-        patterns: ['./**'],
-      },
+        patterns: ['./**']
+      }
     ],
     'react/jsx-fragments': ['error', 'element'],
     'react-refresh/only-export-components': [
       'warn',
-      { allowConstantExport: true },
+      { allowConstantExport: true }
     ],
     'no-unused-vars': [
       'error',
@@ -70,8 +86,8 @@ module.exports = {
         argsIgnorePattern: '^_',
         vars: 'all',
         args: 'after-used',
-        ignoreRestSiblings: false,
-      },
+        ignoreRestSiblings: false
+      }
     ],
 
     'import/order': [
@@ -83,49 +99,58 @@ module.exports = {
           'internal',
           ['parent', 'sibling', 'index'],
           'object',
-          'type',
+          'type'
         ],
         pathGroups: [
           {
             pattern: 'react',
             group: 'external',
-            position: 'before',
+            position: 'before'
           },
           {
             pattern: '@**/*',
             group: 'internal',
-            position: 'after',
-          },
+            position: 'after'
+          }
         ],
         pathGroupsExcludedImportTypes: ['react'],
         'newlines-between': 'always',
         alphabetize: {
           order: 'asc', // or 'desc'
-          caseInsensitive: true,
-        },
-      },
+          caseInsensitive: true
+        }
+      }
     ],
     'no-console': [
       'error',
       {
-        allow: ['info', 'warn', 'error', 'time', 'timeEnd'],
-      },
+        allow: ['info', 'warn', 'error', 'time', 'timeEnd']
+      }
     ],
     'react/jsx-no-bind': [
       'error',
       {
         allowArrowFunctions: true,
         allowBind: false,
-        ignoreRefs: true,
-      },
+        ignoreRefs: true
+      }
     ],
     'prefer-arrow/prefer-arrow-functions': [
       'error',
       {
         disallowPrototype: true,
         singleReturnOnly: false,
-        classPropertiesAllowed: false,
-      },
+        classPropertiesAllowed: false
+      }
     ],
-  },
+    'arrow-parens': ['error', 'as-needed'],
+    'comma-dangle': ['error', 'never'],
+    'react/function-component-definition': [
+      2,
+      {
+        namedComponents: 'arrow-function',
+        unnamedComponents: 'arrow-function'
+      }
+    ]
+  }
 };

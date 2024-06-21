@@ -1,3 +1,3 @@
 export const HEADER_KEYS = {
-  DEVICE_ID: 'deviceId',
+  DEVICE_ID: 'deviceId'
 };

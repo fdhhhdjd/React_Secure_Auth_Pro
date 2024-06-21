@@ -20,7 +20,7 @@ export const setItem = (key, value) => {
  * @param {string} key - The key of the item to retrieve.
  * @returns {any} The retrieved item, or null if the item does not exist or an error occurs.
  */
-export const getItem = (key) => {
+export const getItem = key => {
   try {
     const item = localStorage.getItem(key);
     return item ? JSON.parse(item) : null;
@@ -36,7 +36,7 @@ export const getItem = (key) => {
  *
  * @param {string} key - The key of the item to be removed.
  */
-export const removeItem = (key) => {
+export const removeItem = key => {
   try {
     localStorage.removeItem(key);
   } catch (error) {

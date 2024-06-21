@@ -4,7 +4,7 @@
  * @param {number} length - The length of the device ID to generate.
  * @returns {string} The randomly generated device ID.
  */
-export const generateDeviceId = (length) => {
+export const generateDeviceId = length => {
   const characters =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';

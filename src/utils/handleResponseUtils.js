@@ -1,4 +1,4 @@
-export const handleResponse = (response) => {
+export const handleResponse = response => {
   if (response.status >= 200 && response.status < 300) {
     // Success case
     return {
@@ -6,7 +6,7 @@ export const handleResponse = (response) => {
       message: response?.message,
       status: response?.status,
       reason: response?.reason_status_code,
-      metadata: response?.metadata || {},
+      metadata: response?.metadata || {}
     };
   }
   // Error case
@@ -15,6 +15,6 @@ export const handleResponse = (response) => {
     code: response?.code,
     message: response?.message,
     status: response?.status,
-    timestamp: response?.now,
+    timestamp: response?.now
   };
 };

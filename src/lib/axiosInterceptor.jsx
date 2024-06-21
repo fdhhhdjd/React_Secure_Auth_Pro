@@ -8,7 +8,7 @@ import {
   generateDeviceId,
   getItem,
   removeItem,
-  setItem,
+  setItem
 } from '@/utils';
 
 // Create an Axios instance
@@ -17,8 +17,8 @@ const axiosInstance = axios.create({
   timeout: TIME_CONSTANTS._15_SECONDS,
   withCredentials: true,
   headers: {
-    Accept: 'application/json',
-  },
+    Accept: 'application/json'
+  }
 });
 
 // Function to ensure X-Device-Id header is always included
@@ -35,7 +35,7 @@ const ensureDeviceId = () => {
 
 // Request interceptor
 axiosInstance.interceptors.request.use(
-  async (config) => {
+  async config => {
     // Handle Authorization Token
     const encryptedToken = getItem(USER_KEYS.USER_TOKEN);
     if (encryptedToken) {
@@ -47,7 +47,7 @@ axiosInstance.interceptors.request.use(
     config.headers['X-Device-Id'] = ensureDeviceId();
     return config;
   },
-  (error) => Promise.reject(error),
+  error => Promise.reject(error)
 );
 
 let isTokenRefreshing = false;
@@ -60,8 +60,8 @@ const renewToken = async () => {
     // Assuming you have an API endpoint for renewing the token
     const response = await axiosInstance.get('/auth/renew-token', {
       headers: {
-        'X-Device-Id': deviceId,
-      },
+        'X-Device-Id': deviceId
+      }
     });
     const newToken = response?.data?.metadata?.accessToken;
     setItem(USER_KEYS.USER_TOKEN, encryptAndStoreKey(newToken));
@@ -72,12 +72,12 @@ const renewToken = async () => {
   }
 };
 
-const onTokenRefreshed = (newToken) => {
-  refreshSubscribers.forEach((callback) => callback(newToken));
+const onTokenRefreshed = newToken => {
+  refreshSubscribers.forEach(callback => callback(newToken));
   refreshSubscribers = [];
 };
 
-const addRefreshSubscriber = (callback) => {
+const addRefreshSubscriber = callback => {
   refreshSubscribers.push(callback);
 };
 
@@ -88,8 +88,8 @@ const handleTokenRenewalFailure = () => {
 
 // Response interceptor
 axiosInstance.interceptors.response.use(
-  (response) => response,
-  async (error) => {
+  response => response,
+  async error => {
     const originalRequest = error.config;
     if (
       error.response &&
@@ -117,8 +117,8 @@ axiosInstance.interceptors.response.use(
         }
       }
 
-      return new Promise((resolve) => {
-        addRefreshSubscriber((newToken) => {
+      return new Promise(resolve => {
+        addRefreshSubscriber(newToken => {
           originalRequest.headers.Authorization = `Bearer ${newToken}`;
           originalRequest.headers['X-Device-Id'] = ensureDeviceId();
           resolve(axiosInstance(originalRequest));
@@ -126,7 +126,7 @@ axiosInstance.interceptors.response.use(
       });
     }
     return Promise.reject(error);
-  },
+  }
 );
 
 export default axiosInstance;
