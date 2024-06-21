@@ -8,7 +8,7 @@ const WithAccessRolePermission = (
   return props => {
     const user = {
       role: ROLES.STAFF,
-      permissions: [PERMISSIONS.GET, PERMISSIONS.ADD] // Thay đổi để lấy quyền của người dùng thực tế
+      permissions: [PERMISSIONS.GET, PERMISSIONS.ADD, PERMISSIONS.EDIT] // Thay đổi để lấy quyền của người dùng thực tế
     };
 
     // Check if the user's permissions are allowed
