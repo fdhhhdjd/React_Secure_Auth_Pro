@@ -1,3 +1,5 @@
+import { Navigate } from 'react-router-dom';
+
 import { PERMISSIONS, ROLES } from '@/constants';
 import { checkPermissions } from '@/helpers';
 
@@ -8,7 +10,7 @@ const WithAccessRolePermission = (
   return props => {
     const user = {
       role: ROLES.STAFF,
-      permissions: [PERMISSIONS.GET, PERMISSIONS.ADD, PERMISSIONS.EDIT] // Thay đổi để lấy quyền của người dùng thực tế
+      permissions: [PERMISSIONS.GET, PERMISSIONS.ADD]
     };
 
     // Check if the user's permissions are allowed
@@ -18,7 +20,8 @@ const WithAccessRolePermission = (
     );
 
     if (!permissionsAllowed) {
-      return console.error('Permissions not allowed');
+      console.error('Permissions not allowed');
+      return <Navigate to='/unauthorized' />;
     }
 
     return <WrappedComponent {...props} />;

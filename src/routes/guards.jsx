@@ -7,7 +7,7 @@ import { PERMISSIONS, ROLES } from '@/constants';
 
 //* ABOUT
 export const AboutWithAccess = WithAccessRoleRole(
-  lazy(() => import('@/layouts/mainAbout/AboutLayout')),
+  lazy(() => import('@/layouts/mainLayout/mainAbout/AboutLayout')),
   [ROLES.ADMIN, ROLES.STAFF]
 );
 

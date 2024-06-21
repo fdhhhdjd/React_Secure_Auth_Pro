@@ -13,7 +13,7 @@ export const MainLayout = withSuspense(
   lazy(() => import('@/layouts/mainLayout/MainLayout'))
 );
 export const UserLayout = withSuspense(
-  lazy(() => import('@/layouts/userLayout/UserLayout'))
+  lazy(() => import('@/layouts/mainLayout/userLayout/UserLayout'))
 );
 
 export const AboutLayout = withSuspense(AboutWithAccess);
@@ -29,6 +29,11 @@ export const Profile = withSuspense(lazy(() => import('@/pages/user/profile')));
 export const About = withSuspense(AboutWithPermission);
 export const AboutCreate = withSuspense(AboutCreateWithPermission);
 export const AboutEdit = withSuspense(AboutEditWithPermission);
+
+//* UNAUTHORIZED
+export const Unauthorized = withSuspense(
+  lazy(() => import('@/pages/unauthorized'))
+);
 
 //* NOT FOUND
 export const NotFound = withSuspense(lazy(() => import('@/pages/notfound')));

@@ -1,4 +1,5 @@
-import { HelmetProvider } from 'react-helmet-async';
+import React from 'react';
+
 import { Outlet } from 'react-router-dom';
 
 import useRouteTitle from '@/hooks/useRouteTitle';
@@ -10,14 +11,14 @@ import DocumentTitle from '../helmet/DocumentTitle';
 const MainLayout = () => {
   const title = useRouteTitle();
   return (
-    <HelmetProvider>
+    <React.Fragment>
       <Header />
       <main>
         <DocumentTitle title={title} />
         <Outlet />
       </main>
       <Footer />
-    </HelmetProvider>
+    </React.Fragment>
   );
 };
 

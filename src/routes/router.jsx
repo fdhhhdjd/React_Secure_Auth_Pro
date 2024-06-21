@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import NotFound from '@/pages/notfound';
 import {
   About,
   AboutCreate,
@@ -8,70 +9,81 @@ import {
   Error5XX,
   Home,
   MainLayout,
-  NotFound,
   Profile,
+  Unauthorized,
   User,
   UserLayout
 } from '@/routes/lazyLoader';
 
-// const AboutPageWithAccess = WithAccessRolePermission(About, [PERMISSIONS.GET]);
-// const CreateWithAccess = WithAccessRolePermission(Create, [PERMISSIONS.ADD]);
-// const EditWithAccess = WithAccessRolePermission(Edit, [PERMISSIONS.EDIT]);
+import App from '@/App';
 
 const routes = [
   {
     path: '/',
-    element: <MainLayout />,
-    errorElement: <Error5XX />,
+    element: <App />,
     children: [
-      //* Home Page
       {
-        index: true,
-        element: <Home />,
-        errorElement: <Error5XX />
-      },
-      //* User Page
-      {
-        path: 'user',
-        element: <UserLayout />,
+        path: '/',
+        element: <MainLayout />,
         errorElement: <Error5XX />,
         children: [
+          //* Home Page
           {
             index: true,
-            element: <User />
+            element: <Home />,
+            errorElement: <Error5XX />
           },
+          //* User Page
           {
-            path: ':id',
-            element: <Profile />
+            path: 'user',
+            element: <UserLayout />,
+            errorElement: <Error5XX />,
+            children: [
+              {
+                index: true,
+                element: <User />
+              },
+              {
+                path: ':id',
+                element: <Profile />
+              }
+            ]
+          },
+          // * About Page
+          {
+            path: 'about',
+            element: <AboutLayout />,
+            errorElement: <Error5XX />,
+            children: [
+              {
+                index: true,
+                element: <About />
+              },
+              {
+                path: 'create',
+                element: <AboutCreate />
+              },
+              {
+                path: 'edit/:id',
+                element: <AboutEdit />
+              }
+            ]
+          },
+
+          //* Unauthorized Page
+          {
+            path: 'unauthorized',
+            element: <Unauthorized />,
+            errorElement: <Error5XX />
           }
         ]
-      },
-      // * About Page
-      {
-        path: 'about',
-        element: <AboutLayout />,
-        errorElement: <Error5XX />,
-        children: [
-          {
-            index: true,
-            element: <About />
-          },
-          {
-            path: 'create',
-            element: <AboutCreate />
-          },
-          {
-            path: 'edit/:id',
-            element: <AboutEdit />
-          }
-        ]
-      },
-      {
-        path: '*',
-        element: <NotFound />,
-        errorElement: <Error5XX />
       }
     ]
+  },
+  {
+    path: '*',
+    element: <NotFound />,
+    errorElement: <Error5XX />
   }
 ];
 
