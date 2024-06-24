@@ -77,6 +77,7 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': 'off',
     'jsx-a11y/anchor-is-valid': 'off',
     'jsx-a11y/alt-text': 'off',
+    'no-unreachable': 'off',
     'prettier/prettier': ['error'],
     'no-restricted-imports': [
       'error',
