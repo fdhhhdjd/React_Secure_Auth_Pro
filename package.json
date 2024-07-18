@@ -42,6 +42,7 @@
     "axios": "^1.7.2",
     "clsx": "^2.1.1",
     "crypto-js": "^4.2.0",
+    "firebase": "^10.12.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet-async": "^2.0.5",

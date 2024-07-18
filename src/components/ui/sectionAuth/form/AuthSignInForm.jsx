@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { signInWithPopup } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 
 import Button from '@/components/common/buttons/Button';
@@ -12,7 +13,7 @@ import SocialAuthButton from '@/components/ui/sectionAuth/SocialAuthButton';
 import { loginUser } from '@/features/auth/authThunk';
 import useAppSelector from '@/hooks/useAppSelector';
 
-import { RoutePaths } from '@/configs';
+import { auth, googleAuthProvider, RoutePaths } from '@/configs';
 
 const AuthSignInForm = () => {
   const { isLoading } = useAppSelector(state => state.auth);
@@ -31,6 +32,20 @@ const AuthSignInForm = () => {
     });
   };
 
+  const loginWithGooglePopup = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleAuthProvider);
+      const {
+        user: { uid }
+      } = result;
+      console.info(uid);
+      return uid;
+    } catch (error) {
+      console.info(error.message);
+    }
+    return null;
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(loginUser(state));
@@ -39,7 +54,10 @@ const AuthSignInForm = () => {
   return (
     <React.Fragment>
       <FormSubmit id='connect-google-button' onSubmit={handleSubmit}>
-        <SocialAuthButton provider='Google' />
+        <SocialAuthButton
+          provider='Google'
+          onClick={() => loginWithGooglePopup()}
+        />
       </FormSubmit>
 
       <div className='flex items-center'>

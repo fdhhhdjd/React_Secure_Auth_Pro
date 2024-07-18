@@ -4,7 +4,7 @@ const SocialAuthButton = ({ provider, onClick }) => {
   return (
     <Button
       onClick={onClick}
-      className='w-full inline-flex items-center justify-center py-2.5 px-5 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-900 focus:ring-4 focus:ring-gray-200'
+      className='w-full inline-flex items-center justify-center py-2.5 px-5 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-900'
       type='button'
     >
       <svg

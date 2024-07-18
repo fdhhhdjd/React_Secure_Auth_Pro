@@ -54,6 +54,7 @@ module.exports = {
     'react/no-array-index-key': 'off',
     'object-curly-newline': 'off',
     'no-return-assign': 'off',
+    'import/no-useless-path-segments': 'off',
     'react/function-component-definition': 'off',
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'off',
