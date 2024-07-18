@@ -81,6 +81,7 @@ const AuthSignInForm = () => {
           placeholder='••••••••'
           name={state.password}
           onChange={handleChange}
+          isPassword
         />
         <div className='flex items-center justify-between'>
           <ConditionalLink

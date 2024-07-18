@@ -38,6 +38,7 @@ const AuthResetPassForm = () => {
           placeholder='••••••••'
           name={state.password}
           onChange={handleChange}
+          isPassword
         />
         <InputField
           id='re_password'
@@ -46,6 +47,7 @@ const AuthResetPassForm = () => {
           placeholder='••••••••'
           name={state.re_password}
           onChange={handleChange}
+          isPassword
         />
         {isLoading ? (
           <LoadingSpinner />
