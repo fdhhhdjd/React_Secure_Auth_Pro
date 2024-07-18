@@ -43,6 +43,7 @@ export const OTPCode = withSuspense(lazy(() => import('@/pages/auth/otp')));
 export const ResetPass = withSuspense(
   lazy(() => import('@/pages/auth/reset-password'))
 );
+export const Verify = withSuspense(lazy(() => import('@/pages/auth/verify')));
 
 //* UNAUTHORIZED
 export const Unauthorized = withSuspense(

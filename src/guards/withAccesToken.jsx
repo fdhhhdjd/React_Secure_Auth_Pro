@@ -8,6 +8,7 @@ const WithAccessToken = WrappedComponent => {
     const encryptedToken = getItem(USER_KEYS.USER_TOKEN);
 
     if (!encryptedToken) {
+      // if (encryptedToken) {
       return <Navigate to={RoutePaths.AUTH.SIGN_IN} replace />;
     }
 

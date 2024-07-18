@@ -18,7 +18,8 @@ import {
   UserCreate,
   UserDetail,
   UserEdit,
-  UserLayout
+  UserLayout,
+  Verify
 } from '@/routes/lazyLoader';
 
 import App from '@/App';
@@ -110,6 +111,10 @@ const routes = [
           {
             path: 'reset-password',
             element: <ResetPass />
+          },
+          {
+            path: 'create/account/:email/:expired/:user_id/:token',
+            element: <Verify />
           }
         ]
       }
