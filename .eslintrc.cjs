@@ -49,6 +49,9 @@ module.exports = {
   ],
   rules: {
     'react/jsx-no-target-blank': 'off',
+    'react/jsx-one-expression-per-line': 'off',
+    'no-confusing-arrow': 'off',
+    'object-curly-newline': 'off',
     'react/function-component-definition': 'off',
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'off',

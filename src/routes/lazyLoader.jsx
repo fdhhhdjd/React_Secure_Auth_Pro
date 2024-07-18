@@ -48,7 +48,7 @@ export const VehicleCreate = withSuspense(VehicleCreateWithPermission);
 export const VehicleEdit = withSuspense(VehicleEditWithPermission);
 
 //* AUTH
-export const Login = withSuspense(lazy(() => import('@/pages/auth/login')));
+export const SignIn = withSuspense(lazy(() => import('@/pages/auth/sign-in')));
 
 //* UNAUTHORIZED
 export const Unauthorized = withSuspense(

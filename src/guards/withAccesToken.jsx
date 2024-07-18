@@ -8,7 +8,7 @@ const WithAccessToken = WrappedComponent => {
     const encryptedToken = getItem(USER_KEYS.USER_TOKEN);
 
     if (!encryptedToken) {
-      return <Navigate to='/auth/login' replace />;
+      return <Navigate to='/auth/sign-in' replace />;
     }
 
     return <WrappedComponent {...props} />;

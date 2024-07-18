@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import SignUp from '@/pages/auth/sign-up';
 import NotFound from '@/pages/notfound';
 import {
   DashBoardLayout,
@@ -7,8 +8,8 @@ import {
   Error5XX,
   LayoutAuth,
   LayoutMain,
-  Login,
   Profile,
+  SignIn,
   Unauthorized,
   User,
   UserCreate,
@@ -117,9 +118,12 @@ const routes = [
         errorElement: <Error5XX />,
         children: [
           {
-            path: 'login',
-            element: <Login />,
-            errorElement: <Error5XX />
+            path: 'sign-in',
+            element: <SignIn />
+          },
+          {
+            path: 'sign-up',
+            element: <SignUp />
           }
         ]
       }

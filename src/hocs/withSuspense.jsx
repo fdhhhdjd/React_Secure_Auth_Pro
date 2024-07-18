@@ -1,13 +1,14 @@
-// hoc/withSuspense.js
-import { Suspense } from 'react';
+import React from 'react';
+
+import Loader from '@/pages/loader';
 
 const withSuspense =
-  (Component, fallback = <div>Loading...</div>) =>
+  (Component, fallback = <Loader />) =>
   props => {
     return (
-      <Suspense fallback={fallback}>
+      <React.Suspense fallback={fallback}>
         <Component {...props} />
-      </Suspense>
+      </React.Suspense>
     );
   };
 
