@@ -39,9 +39,9 @@ const AuthSignUpForm = () => {
       <FormSubmit className='space-y-4 md:space-y-6' onSubmit={handleSubmit}>
         <InputField
           id='identifier'
-          label='identifier'
+          label='Email'
           type='email'
-          placeholder='Email'
+          placeholder='email@gmail.com'
           name={state.identifier}
           onChange={handleChange}
         />

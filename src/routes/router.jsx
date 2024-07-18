@@ -10,6 +10,7 @@ import {
   NotFound,
   OTPCode,
   Profile,
+  ResetPass,
   SignIn,
   SignUp,
   Unauthorized,
@@ -105,6 +106,10 @@ const routes = [
           {
             path: 'otp',
             element: <OTPCode />
+          },
+          {
+            path: 'reset-password',
+            element: <ResetPass />
           }
         ]
       }

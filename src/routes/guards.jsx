@@ -25,32 +25,6 @@ export const DashBoardWithPermission = WithAccessRolePermission(
   [PERMISSIONS.GET]
 );
 
-//* Vehicle
-export const VehicleWithAccess = WithAccessRoleRole(
-  lazy(() => import('@/layouts/mainLayout/VehicleLayout/VehicleLayout')),
-  [ROLES.ADMIN, ROLES.STAFF]
-);
-
-export const VehicleWithPermission = WithAccessRolePermission(
-  lazy(() => import('@/pages/vehicle')),
-  [PERMISSIONS.GET]
-);
-
-export const VehicleDetailEditWithPermission = WithAccessRolePermission(
-  lazy(() => import('@/pages/vehicle/detail')),
-  [PERMISSIONS.GET]
-);
-
-export const VehicleCreateWithPermission = WithAccessRolePermission(
-  lazy(() => import('@/pages/vehicle/create/index')),
-  [PERMISSIONS.ADD]
-);
-
-export const VehicleEditWithPermission = WithAccessRolePermission(
-  lazy(() => import('@/pages/vehicle/edit')),
-  [PERMISSIONS.EDIT]
-);
-
 //* USER
 export const UserWithAccess = WithAccessRoleRole(
   lazy(() => import('@/layouts/mainLayout/userLayout/UserLayout')),

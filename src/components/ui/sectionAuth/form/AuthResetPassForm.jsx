@@ -1,26 +1,22 @@
 import React from 'react';
 
-import { useDispatch } from 'react-redux';
-
 import Button from '@/components/common/buttons/Button';
 import FormSubmit from '@/components/common/forms/FormSubmit';
 import InputField from '@/components/common/inputs/InputField';
 import ConditionalLink from '@/components/common/links/ConditionalLink';
 import LoadingSpinner from '@/components/common/loadings/LoadingSpinner';
 import Paragraph from '@/components/common/paragraph/Paragraph';
-import { loginUser } from '@/features/auth/authThunk';
 import useAppSelector from '@/hooks/useAppSelector';
 
 import { RoutePaths } from '@/configs';
 
-const AuthForgetForm = () => {
+const AuthResetPassForm = () => {
   const { isLoading } = useAppSelector(state => state.auth);
 
   const [state, setState] = React.useState({
-    identifier: ''
+    password: '',
+    re_password: ''
   });
-
-  const dispatch = useDispatch();
 
   const handleChange = e => {
     setState({
@@ -31,18 +27,24 @@ const AuthForgetForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(loginUser(state));
   };
-
   return (
     <React.Fragment>
       <FormSubmit className='space-y-4 md:space-y-6' onSubmit={handleSubmit}>
         <InputField
-          id='identifier'
-          label='Forget'
-          type='email'
-          placeholder='Email'
-          name={state.identifier}
+          id='password'
+          label='New Password'
+          type='password'
+          placeholder='••••••••'
+          name={state.password}
+          onChange={handleChange}
+        />
+        <InputField
+          id='re_password'
+          label='Repeat Password'
+          type='password'
+          placeholder='••••••••'
+          name={state.re_password}
           onChange={handleChange}
         />
         {isLoading ? (
@@ -52,12 +54,11 @@ const AuthForgetForm = () => {
             type='submit'
             className='text-white bg-orange-500 py-1.5 px-4 rounded font-bold w-full hover:bg-orange-600'
           >
-            Sign Up
+            Reset Password
           </Button>
-        )}
-
+        )}{' '}
         <Paragraph className='text-sm font-light text-gray-500'>
-          Do you already have an account ? &nbsp;
+          Do you already remember password ? &nbsp;
           <ConditionalLink
             className='font-medium text-orange-500 hover:underline'
             to={RoutePaths.AUTH.SIGN_IN}
@@ -70,4 +71,4 @@ const AuthForgetForm = () => {
   );
 };
 
-export default AuthForgetForm;
+export default AuthResetPassForm;

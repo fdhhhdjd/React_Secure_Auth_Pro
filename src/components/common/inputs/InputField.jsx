@@ -1,7 +1,10 @@
 const InputField = ({ id, label, type, placeholder, name, onChange }) => {
   return (
     <div>
-      <label htmlFor={id} className='block mb-2 text-sm font-medium text-white'>
+      <label
+        htmlFor={id}
+        className='block mb-2 text-sm font-medium text-black-400'
+      >
         {label}
       </label>
       <input

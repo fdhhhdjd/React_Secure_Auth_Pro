@@ -57,16 +57,16 @@ const AuthOTPForm = () => {
         {isLoading && <LoadingSpinner />}
 
         <div className='flex items-center justify-between'>
-          <Button className='px-3 py-2 text-sm font-medium text-center rounded text-gray-500 hover:text-orange-500'>
+          <Button className='px-3 py-2 text-sm font-medium text-center rounded text-gray-600 hover:text-orange-500'>
             Resend Code
           </Button>
-          <Button className='px-3 py-2 text-sm font-medium text-center rounded text-gray-500 hover:text-blue-500'>
+          <Button className='px-3 py-2 text-sm font-medium text-center rounded text-gray-600 hover:text-orange-500'>
             Request Again:&nbsp;
             <b
               className={cn(
                 countdown <= TIME_CONSTANTS._1_MINUTES / 1000
                   ? 'text-red-400'
-                  : 'text-orange-400'
+                  : 'text-green-400'
               )}
             >
               {formatTime(countdown)}

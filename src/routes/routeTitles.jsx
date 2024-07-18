@@ -26,6 +26,10 @@ const routeTitles = [
     title: `${TITLE_CONSTANTS.AUTH} | Forgot Password`
   },
   {
+    pattern: /^\/auth\/reset-password$/,
+    title: `${TITLE_CONSTANTS.AUTH} | Reset Password`
+  },
+  {
     pattern: /^\/auth\/otp$/,
     title: `${TITLE_CONSTANTS.AUTH} | OTP Code`
   },

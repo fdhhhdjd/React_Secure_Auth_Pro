@@ -50,7 +50,7 @@ const AuthSignInForm = () => {
       <FormSubmit className='space-y-4 md:space-y-6' onSubmit={handleSubmit}>
         <InputField
           id='identifier'
-          label='identifier'
+          label='Email Or Phone, Username'
           type='email'
           placeholder='Email Or Phone, Username'
           name={state.identifier}

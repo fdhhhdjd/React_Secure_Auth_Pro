@@ -10,12 +10,7 @@ import {
   UserDetailEditWithPermission,
   UserEditWithPermission,
   UserWithAccess,
-  UserWithPermission,
-  VehicleCreateWithPermission,
-  VehicleDetailEditWithPermission,
-  VehicleEditWithPermission,
-  VehicleWithAccess,
-  VehicleWithPermission
+  UserWithPermission
 } from '@/routes/guards';
 
 //* LAYOUT
@@ -40,18 +35,14 @@ export const UserEdit = withSuspense(UserEditWithPermission);
 //* PROFILE
 export const Profile = withSuspense(lazy(() => import('@/pages/profile')));
 
-//* VEHICLE
-export const VehicleLayout = withSuspense(VehicleWithAccess);
-export const Vehicle = withSuspense(VehicleWithPermission);
-export const VehicleDetail = withSuspense(VehicleDetailEditWithPermission);
-export const VehicleCreate = withSuspense(VehicleCreateWithPermission);
-export const VehicleEdit = withSuspense(VehicleEditWithPermission);
-
 //* AUTH
 export const SignIn = withSuspense(lazy(() => import('@/pages/auth/sign-in')));
 export const SignUp = withSuspense(lazy(() => import('@/pages/auth/sign-up')));
 export const Forget = withSuspense(lazy(() => import('@/pages/auth/forget')));
 export const OTPCode = withSuspense(lazy(() => import('@/pages/auth/otp')));
+export const ResetPass = withSuspense(
+  lazy(() => import('@/pages/auth/reset-password'))
+);
 
 //* UNAUTHORIZED
 export const Unauthorized = withSuspense(
