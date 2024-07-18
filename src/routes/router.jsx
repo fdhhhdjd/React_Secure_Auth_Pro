@@ -1,26 +1,22 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import SignUp from '@/pages/auth/sign-up';
-import NotFound from '@/pages/notfound';
 import {
   DashBoardLayout,
   Dashboard,
   Error5XX,
+  Forget,
   LayoutAuth,
   LayoutMain,
+  NotFound,
   Profile,
   SignIn,
+  SignUp,
   Unauthorized,
   User,
   UserCreate,
   UserDetail,
   UserEdit,
-  UserLayout,
-  Vehicle,
-  VehicleCreate,
-  VehicleDetail,
-  VehicleEdit,
-  VehicleLayout
+  UserLayout
 } from '@/routes/lazyLoader';
 
 import App from '@/App';
@@ -79,30 +75,6 @@ const routes = [
               }
             ]
           },
-          // * Vehicle Page
-          {
-            path: 'vehicle',
-            element: <VehicleLayout />,
-            errorElement: <Error5XX />,
-            children: [
-              {
-                index: true,
-                element: <Vehicle />
-              },
-              {
-                path: ':id',
-                element: <VehicleDetail />
-              },
-              {
-                path: 'create',
-                element: <VehicleCreate />
-              },
-              {
-                path: 'edit/:id',
-                element: <VehicleEdit />
-              }
-            ]
-          },
 
           //* Unauthorized Page
           {
@@ -124,6 +96,10 @@ const routes = [
           {
             path: 'sign-up',
             element: <SignUp />
+          },
+          {
+            path: 'forgot-password',
+            element: <Forget />
           }
         ]
       }

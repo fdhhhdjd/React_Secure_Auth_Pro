@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 
-import { USER_KEYS } from '@/configs';
+import { RoutePaths, USER_KEYS } from '@/configs';
 import { getItem } from '@/utils';
 
 const WithAccessToken = WrappedComponent => {
@@ -8,7 +8,7 @@ const WithAccessToken = WrappedComponent => {
     const encryptedToken = getItem(USER_KEYS.USER_TOKEN);
 
     if (!encryptedToken) {
-      return <Navigate to='/auth/sign-in' replace />;
+      return <Navigate to={RoutePaths.AUTH.SIGN_IN} replace />;
     }
 
     return <WrappedComponent {...props} />;

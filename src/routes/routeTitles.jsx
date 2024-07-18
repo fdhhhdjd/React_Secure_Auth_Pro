@@ -7,11 +7,27 @@ const routeTitles = [
   //* PROFILE
   { pattern: /^\/$/, title: TITLE_CONSTANTS.PROFILE },
 
-  //* USER
-  { pattern: /^\/user$/, title: TITLE_CONSTANTS.USER },
+  //* Auth
+  { pattern: /^\/auth$/, title: TITLE_CONSTANTS.AUTH },
   {
-    pattern: /^\/user\/(\d+)$/,
-    title: id => `${TITLE_CONSTANTS.USER} | ${id}`
+    pattern: /^\/auth\/(\d+)$/,
+    title: id => `${TITLE_CONSTANTS.AUTH} | ${id}`
+  },
+  {
+    pattern: /^\/auth\/sign-up$/,
+    title: `${TITLE_CONSTANTS.AUTH} | Sign Up`
+  },
+  {
+    pattern: /^\/auth\/sign-in$/,
+    title: `${TITLE_CONSTANTS.AUTH} | Sign In`
+  },
+  {
+    pattern: /^\/auth\/forgot-password$/,
+    title: `${TITLE_CONSTANTS.AUTH} | Forgot Password`
+  },
+  {
+    pattern: /^\/auth\/otp$/,
+    title: `${TITLE_CONSTANTS.AUTH} | OTP Code`
   },
   {
     pattern: /^\/user\/create$/,
@@ -20,21 +36,6 @@ const routeTitles = [
   {
     pattern: /^\/user\/edit\/(\d+)$/,
     title: id => `${TITLE_CONSTANTS.USER} | Edit | ${id}`
-  },
-
-  //* VEHICLE
-  { pattern: /^\/vehicle$/, title: TITLE_CONSTANTS.VEHICLE },
-  {
-    pattern: /^\/vehicle\/create$/,
-    title: `${TITLE_CONSTANTS.VEHICLE} | Create`
-  },
-  {
-    pattern: /^\/vehicle\/edit\/(\d+)$/,
-    title: id => `${TITLE_CONSTANTS.VEHICLE} | Edit | ${id}`
-  },
-  {
-    pattern: /^\/vehicle\/(\d+)$/,
-    title: id => `${TITLE_CONSTANTS.VEHICLE}  | ${id}`
   },
   { pattern: /.*/, title: TITLE_CONSTANTS.NOTFOUND }
 ];

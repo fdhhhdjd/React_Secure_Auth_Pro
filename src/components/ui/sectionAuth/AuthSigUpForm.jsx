@@ -11,6 +11,8 @@ import Paragraph from '@/components/common/paragraph/Paragraph';
 import { loginUser } from '@/features/auth/authThunk';
 import useAppSelector from '@/hooks/useAppSelector';
 
+import { RoutePaths } from '@/configs';
+
 const AuthSignUpForm = () => {
   const { isLoading } = useAppSelector(state => state.auth);
 
@@ -45,7 +47,7 @@ const AuthSignUpForm = () => {
         />
         <div className='flex items-center justify-between'>
           <ConditionalLink
-            to='/auth/forgot-password'
+            to={RoutePaths.AUTH.FORGOT_PASSWORD}
             className='text-sm font-medium text-orange-500 hover:underline'
           >
             Forgot password?
@@ -66,7 +68,7 @@ const AuthSignUpForm = () => {
           Do you already have an account ? &nbsp;
           <ConditionalLink
             className='font-medium text-orange-500 hover:underline'
-            to='/auth/login'
+            to={RoutePaths.AUTH.SIGN_IN}
           >
             Sign In
           </ConditionalLink>

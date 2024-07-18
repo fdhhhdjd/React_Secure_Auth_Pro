@@ -8,18 +8,16 @@ import InputField from '@/components/common/inputs/InputField';
 import ConditionalLink from '@/components/common/links/ConditionalLink';
 import LoadingSpinner from '@/components/common/loadings/LoadingSpinner';
 import Paragraph from '@/components/common/paragraph/Paragraph';
-import SocialAuthButton from '@/components/ui/sectionAuth/SocialAuthButton';
 import { loginUser } from '@/features/auth/authThunk';
 import useAppSelector from '@/hooks/useAppSelector';
 
 import { RoutePaths } from '@/configs';
 
-const AuthSignInForm = () => {
+const AuthForgetForm = () => {
   const { isLoading } = useAppSelector(state => state.auth);
 
   const [state, setState] = React.useState({
-    identifier: '',
-    password: ''
+    identifier: ''
   });
 
   const dispatch = useDispatch();
@@ -38,40 +36,15 @@ const AuthSignInForm = () => {
 
   return (
     <React.Fragment>
-      <FormSubmit id='connect-google-button' onSubmit={handleSubmit}>
-        <SocialAuthButton provider='Google' />
-      </FormSubmit>
-
-      <div className='flex items-center'>
-        <div className='w-full h-0.5 bg-gray-200' />
-        <div className='px-5 text-center text-gray-500'>or</div>
-        <div className='w-full h-0.5 bg-gray-200' />
-      </div>
       <FormSubmit className='space-y-4 md:space-y-6' onSubmit={handleSubmit}>
         <InputField
           id='identifier'
           label='identifier'
           type='email'
-          placeholder='Email Or Phone, Username'
+          placeholder='Email'
           name={state.identifier}
           onChange={handleChange}
         />
-        <InputField
-          id='password'
-          label='Password'
-          type='password'
-          placeholder='••••••••'
-          name={state.password}
-          onChange={handleChange}
-        />
-        <div className='flex items-center justify-between'>
-          <ConditionalLink
-            to={RoutePaths.AUTH.FORGOT_PASSWORD}
-            className='text-sm font-medium text-orange-500 hover:underline'
-          >
-            Forgot password?
-          </ConditionalLink>
-        </div>
         {isLoading ? (
           <LoadingSpinner />
         ) : (
@@ -79,17 +52,17 @@ const AuthSignInForm = () => {
             type='submit'
             className='text-white bg-orange-500 py-1.5 px-4 rounded font-bold w-full hover:bg-orange-600'
           >
-            Sign in
+            Sign Up
           </Button>
         )}
 
         <Paragraph className='text-sm font-light text-gray-500'>
-          Don’t have an account yet? &nbsp;
+          Do you already have an account ? &nbsp;
           <ConditionalLink
             className='font-medium text-orange-500 hover:underline'
-            to={RoutePaths.AUTH.SIGN_UP}
+            to={RoutePaths.AUTH.SIGN_IN}
           >
-            Sign up
+            Sign In
           </ConditionalLink>
         </Paragraph>
       </FormSubmit>
@@ -97,4 +70,4 @@ const AuthSignInForm = () => {
   );
 };
 
-export default AuthSignInForm;
+export default AuthForgetForm;

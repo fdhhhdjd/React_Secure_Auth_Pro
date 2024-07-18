@@ -49,6 +49,8 @@ export const VehicleEdit = withSuspense(VehicleEditWithPermission);
 
 //* AUTH
 export const SignIn = withSuspense(lazy(() => import('@/pages/auth/sign-in')));
+export const SignUp = withSuspense(lazy(() => import('@/pages/auth/sign-up')));
+export const Forget = withSuspense(lazy(() => import('@/pages/auth/forget')));
 
 //* UNAUTHORIZED
 export const Unauthorized = withSuspense(
