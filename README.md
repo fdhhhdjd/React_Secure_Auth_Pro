@@ -7,11 +7,61 @@
 <a href = "mailto:nguyentientai10@gmail.com"><img src="https://img.icons8.com/fluency/48/000000/send-mass-email.png" alt="License"></a>
 </p>
 
-## Project: React Security Auth Pro
+# Project: React Security Auth Pro
+
+## Structure folder Project
+
+```
+.
+├── .editorconfig          # Editor configuration for maintaining consistent coding styles.
+├── .env                   # Environment variables for the project.
+├── .env.example           # Example environment variables file.
+├── .eslintignore          # Specifies files to be ignored by ESLint.
+├── .eslintrc.cjs          # ESLint configuration for code quality and consistency.
+├── .github/               # GitHub-specific configurations and documentation.
+│   └── FUNDING.yml        # Configuration for GitHub Sponsors.
+├── .gitignore             # Specifies untracked files to ignore.
+├── .husky/                # Husky for managing Git hooks.
+│   ├── commit-msg         # Commit message hook.
+│   └── pre-commit         # Pre-commit hook.
+├── .prettierignore        # Specifies files to be ignored by Prettier.
+├── .prettierrc            # Prettier configuration for code formatting.
+├── .vscode/               # VS Code-specific settings.
+│   └── settings.json      # Editor settings for VS Code.
+├── commitlint.config.js   # Configuration for commit message linting.
+├── docs/                  # Project documentation.
+│   ├── commit-role.md     # Guidelines for commit messages.
+│   └── folder-structure.md# Documentation on the project's folder structure.
+├── index.html             # Entry point HTML file for the web application.
+├── jsconfig.json          # JS project configuration for VS Code.
+├── package.json           # Project metadata and dependency management.
+├── postcss.config.js      # Configuration for PostCSS.
+├── public/                # Publicly accessible static files (images, fonts, icons).
+├── README.md              # Project overview, setup instructions, and other essential information.
+├── src/                   # Main source code directory.
+│   ├── App.jsx            # Main React component, entry point of the React app.
+│   ├── assets/            # Static assets like fonts and images.
+│   ├── components/        # Reusable React components.
+│   ├── configs/           # Application setup configurations and constants.
+│   ├── constants/         # Application-wide constant values.
+│   ├── contexts/          # React context providers for state management.
+│   ├── features/          # Feature-specific components and logic.
+│   ├── guards/            # Route guards for conditional navigation.
+│   ├── helpers/           # Utility functions and helpers.
+│   ├── hocs/              # Higher-order components.
+│   ├── hooks/             # Custom React hooks.
+│   ├── layouts/           # Components defining page layouts.
+│   ├── lib/               # Library code and third-party dependencies.
+│   ├── main.jsx           # Entry point for initializing the React app.
+│   └── routes/            # Application routing configuration.
+├── tailwind.config.js     # Configuration for Tailwind CSS.
+└── vite.config.js         # Configuration file for Vite, the build tool used by the project.
+
+```
 
 ## Team Word: Liên hệ công việc https://profile-forme.com
 
-## 1. Nguyen Tien Tai ( MainTain 🚩).
+## 1. Nguyen Tien Tai
 
 ## Tài Khoản Donate li Cf để có động lực code cho anh em tham khảo 😄.
 
