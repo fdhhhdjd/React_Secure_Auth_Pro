@@ -1,7 +1,7 @@
 import React from 'react';
 
 import AuthFormContainer from '@/components/ui/sectionAuth/AuthFormContainer';
-import AuthLoginForm from '@/components/ui/sectionAuth/AuthSignInForm';
+import AuthLoginForm from '@/components/ui/sectionAuth/form/AuthSignInForm';
 
 const SignIn = () => {
   return (

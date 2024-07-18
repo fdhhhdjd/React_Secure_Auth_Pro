@@ -1,7 +1,7 @@
 import React from 'react';
 
 import AuthFormContainer from '@/components/ui/sectionAuth/AuthFormContainer';
-import AuthSignUp from '@/components/ui/sectionAuth/AuthSigUpForm';
+import AuthSignUp from '@/components/ui/sectionAuth/form/AuthSigUpForm';
 
 const SignUp = () => {
   return (

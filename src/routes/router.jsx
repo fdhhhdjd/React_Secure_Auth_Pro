@@ -8,6 +8,7 @@ import {
   LayoutAuth,
   LayoutMain,
   NotFound,
+  OTPCode,
   Profile,
   SignIn,
   SignUp,
@@ -100,6 +101,10 @@ const routes = [
           {
             path: 'forgot-password',
             element: <Forget />
+          },
+          {
+            path: 'otp',
+            element: <OTPCode />
           }
         ]
       }

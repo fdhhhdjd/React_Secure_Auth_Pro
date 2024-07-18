@@ -1,7 +1,7 @@
 import React from 'react';
 
-import AuthForgetForm from '@/components/ui/sectionAuth/AuthForgetForm';
 import AuthFormContainer from '@/components/ui/sectionAuth/AuthFormContainer';
+import AuthForgetForm from '@/components/ui/sectionAuth/form/AuthForgetForm';
 
 const Forget = () => {
   return (
