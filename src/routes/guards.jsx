@@ -40,13 +40,3 @@ export const ChangePassWithPermission = WithAccessRolePermission(
   lazy(() => import('@/pages/user/change-password')),
   [PERMISSIONS.GET]
 );
-
-export const UserCreateWithPermission = WithAccessRolePermission(
-  lazy(() => import('@/pages/user/create')),
-  [PERMISSIONS.ADD]
-);
-
-export const UserEditWithPermission = WithAccessRolePermission(
-  lazy(() => import('@/pages/user/edit')),
-  [PERMISSIONS.EDIT]
-);
