@@ -4,6 +4,8 @@ export * from '@/configs/headerConfigs';
 
 export * from '@/configs/userConfigs';
 
-export * from '@/configs/routesConfig';
+export * from '@/configs/routesConfigs';
 
 export * from '@/configs/firebaseConfigs';
+
+export * from '@/configs/navigationConfigs';

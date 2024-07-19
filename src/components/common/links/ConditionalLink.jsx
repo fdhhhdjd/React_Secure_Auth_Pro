@@ -9,7 +9,7 @@ const ConditionalLink = ({
   ...props
 }) => {
   const linkStyle = ({ isActive }) =>
-    isActive ? { ...style, color: 'green' } : style;
+    isActive ? { ...style, color: 'white' } : style;
 
   if (useNavLink) {
     return (

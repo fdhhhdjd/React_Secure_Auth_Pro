@@ -49,6 +49,7 @@ module.exports = {
   ],
   rules: {
     'react/jsx-no-target-blank': 'off',
+    'import/named': 'off',
     'react/jsx-one-expression-per-line': 'off',
     'no-confusing-arrow': 'off',
     'react/no-array-index-key': 'off',

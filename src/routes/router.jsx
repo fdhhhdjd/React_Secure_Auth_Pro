@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import {
+  ChangePass,
   DashBoardLayout,
   Dashboard,
   Error5XX,
@@ -15,9 +16,6 @@ import {
   SignUp,
   Unauthorized,
   User,
-  UserCreate,
-  UserDetail,
-  UserEdit,
   UserLayout,
   Verify
 } from '@/routes/lazyLoader';
@@ -65,16 +63,8 @@ const routes = [
                 element: <User />
               },
               {
-                path: ':id',
-                element: <UserDetail />
-              },
-              {
-                path: 'create',
-                element: <UserCreate />
-              },
-              {
-                path: 'edit/:id',
-                element: <UserEdit />
+                path: 'change-password',
+                element: <ChangePass />
               }
             ]
           },

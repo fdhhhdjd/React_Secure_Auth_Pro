@@ -2,13 +2,11 @@ import { lazy } from 'react';
 
 import withSuspense from '@/hocs/withSuspense';
 import {
+  ChangePassWithPermission,
   DashBoardWithAccess,
   DashBoardWithPermission,
   MainLayoutWithAccessToken,
   MainLayoutWithAuth,
-  UserCreateWithPermission,
-  UserDetailEditWithPermission,
-  UserEditWithPermission,
   UserWithAccess,
   UserWithPermission
 } from '@/routes/guards';
@@ -28,9 +26,7 @@ export const Dashboard = withSuspense(DashBoardWithPermission);
 //* USER
 export const UserLayout = withSuspense(UserWithAccess);
 export const User = withSuspense(UserWithPermission);
-export const UserDetail = withSuspense(UserDetailEditWithPermission);
-export const UserCreate = withSuspense(UserCreateWithPermission);
-export const UserEdit = withSuspense(UserEditWithPermission);
+export const ChangePass = withSuspense(ChangePassWithPermission);
 
 //* PROFILE
 export const Profile = withSuspense(lazy(() => import('@/pages/profile')));

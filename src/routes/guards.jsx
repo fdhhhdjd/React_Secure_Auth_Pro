@@ -36,8 +36,8 @@ export const UserWithPermission = WithAccessRolePermission(
   [PERMISSIONS.GET]
 );
 
-export const UserDetailEditWithPermission = WithAccessRolePermission(
-  lazy(() => import('@/pages/user/detail')),
+export const ChangePassWithPermission = WithAccessRolePermission(
+  lazy(() => import('@/pages/user/change-password')),
   [PERMISSIONS.GET]
 );
 
