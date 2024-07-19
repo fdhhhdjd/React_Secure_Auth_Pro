@@ -1,23 +1,31 @@
 import React from 'react';
 
+import { useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import Button from '@/components/common/buttons/Button';
 import FormSubmit from '@/components/common/forms/FormSubmit';
 import InputField from '@/components/common/inputs/InputField';
 import ConditionalLink from '@/components/common/links/ConditionalLink';
 import LoadingSpinner from '@/components/common/loadings/LoadingSpinner';
 import Paragraph from '@/components/common/paragraph/Paragraph';
+import { resetPass } from '@/features/auth/authThunk';
 import useAppSelector from '@/hooks/useAppSelector';
 
 import { RoutePaths } from '@/configs';
 
 const AuthResetPassForm = () => {
   const { isLoading } = useAppSelector(state => state.auth);
-  // const { userId, token } = useParams();
+  const { userId, token } = useParams();
+  const dispatch = useDispatch();
+  const Navigation = useNavigate();
 
   const [state, setState] = React.useState({
     password: '',
     re_password: ''
   });
+
+  const [formKey, setFormKey] = React.useState(false);
 
   const handleChange = e => {
     setState({
@@ -26,12 +34,25 @@ const AuthResetPassForm = () => {
     });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
+    const resultRedux = await dispatch(
+      resetPass({ password: state.password, user_id: userId, token })
+    );
+    if (resultRedux.payload.status === 200) {
+      setState({ password: '', re_password: '' });
+      setFormKey(prevKey => !prevKey);
+      Navigation(RoutePaths.AUTH.SIGN_IN);
+    }
+    return null;
   };
   return (
     <React.Fragment>
-      <FormSubmit className='space-y-4 md:space-y-6' onSubmit={handleSubmit}>
+      <FormSubmit
+        key={formKey}
+        className='space-y-4 md:space-y-6'
+        onSubmit={handleSubmit}
+      >
         <InputField
           id='password'
           label='New Password'

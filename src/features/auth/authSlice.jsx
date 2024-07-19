@@ -4,6 +4,7 @@ import {
   loginGoogleUser,
   loginUser,
   registerUser,
+  resetPass,
   senOTPGeneral,
   verificationEmail
 } from '@/features/auth/authThunk';
@@ -104,6 +105,14 @@ const authSlice = createSlice({
           encryptAndStoreKey(action?.payload?.metadata?.accessToken)
         );
         setItem(USER_KEYS.USER_ID, action?.payload?.metadata?.id);
+      })
+
+      //* Reset Pass
+      .addCase(resetPass.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(resetPass.fulfilled, (state, __) => {
+        state.isLoading = false;
       })
 
       //* Handle Rejected Actions

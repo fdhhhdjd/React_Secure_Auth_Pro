@@ -20,6 +20,7 @@ export const handleErrorCode = errorCode => {
       showToastError('Email invalid!');
       break;
     case 15001:
+    case 12002:
       showToastError('Email or password invalid!');
       break;
     case 16000:
