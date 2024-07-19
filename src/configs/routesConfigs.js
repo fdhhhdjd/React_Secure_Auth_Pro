@@ -3,7 +3,8 @@ export const RoutePaths = {
     BASE: '/auth',
     SIGN_UP: '/auth/sign-up',
     SIGN_IN: '/auth/sign-in',
-    FORGOT_PASSWORD: '/auth/forgot-password'
+    FORGOT_PASSWORD: '/auth/forgot-password',
+    OTP: '/auth/otp'
   },
   HOME: {
     BASE: '/'

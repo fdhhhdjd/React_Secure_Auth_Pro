@@ -2,6 +2,7 @@ import React from 'react';
 
 import { signInWithPopup } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import Button from '@/components/common/buttons/Button';
 import FormSubmit from '@/components/common/forms/FormSubmit';
@@ -14,6 +15,8 @@ import { loginGoogleUser, loginUser } from '@/features/auth/authThunk';
 import useAppSelector from '@/hooks/useAppSelector';
 
 import { auth, googleAuthProvider, RoutePaths } from '@/configs';
+import { TYPE_LOGIN } from '@/constants';
+import { showToastSuccess } from '@/utils';
 
 const AuthSignInForm = () => {
   const { isLoading } = useAppSelector(state => state.auth);
@@ -22,6 +25,7 @@ const AuthSignInForm = () => {
     identifier: '',
     password: ''
   });
+  const Navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -32,9 +36,16 @@ const AuthSignInForm = () => {
     });
   };
 
-  const handleRedirect = rs => {
+  const handleRedirect = (rs, type = TYPE_LOGIN.GOOGLE) => {
     if (rs.payload.status === 200) {
+      showToastSuccess('Sign in successfully');
       return (window.location.href = '/');
+    }
+
+    const towFactor =
+      rs.payload.originalError.code === 12008 && type === TYPE_LOGIN.LOGIN;
+    if (towFactor) {
+      Navigate(RoutePaths.AUTH.OTP);
     }
 
     return null;
@@ -48,7 +59,7 @@ const AuthSignInForm = () => {
       } = result;
 
       const resultRedux = await dispatch(loginGoogleUser({ type: 10, uid }));
-      handleRedirect(resultRedux);
+      handleRedirect(resultRedux, TYPE_LOGIN.GOOGLE);
     } catch (error) {
       console.info(error.message);
     }
@@ -58,7 +69,7 @@ const AuthSignInForm = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     const resultRedux = await dispatch(loginUser(state));
-    handleRedirect(resultRedux);
+    handleRedirect(resultRedux, TYPE_LOGIN.LOGIN);
   };
 
   return (

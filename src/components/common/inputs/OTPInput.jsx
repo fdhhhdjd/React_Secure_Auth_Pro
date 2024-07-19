@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 
-const OTPInput = ({ length, onComplete }) => {
+const OTPInput = ({ length, onComplete, resetFlag }) => {
   const [inputs, setInputs] = React.useState(Array(length).fill(''));
   const inputRefs = React.useRef([]);
 
@@ -9,19 +10,27 @@ const OTPInput = ({ length, onComplete }) => {
     inputRefs.current[0].focus();
   }, []);
 
+  React.useEffect(() => {
+    if (resetFlag) {
+      // Reset inputs when resetFlag changes
+      setInputs(Array(length).fill(''));
+      // Optionally, focus the first input after reset
+      if (inputRefs.current[0]) {
+        inputRefs.current[0].focus();
+      }
+    }
+  }, [resetFlag]); // Dependency array includes resetFlag
+
   const handleChange = (value, index) => {
-    // Only proceed if the value is a digit
     if (/^\d$/.test(value) || value === '') {
       const newInputs = [...inputs];
       newInputs[index] = value;
       setInputs(newInputs);
 
-      // Move focus forward on input
       if (value && index < length - 1) {
         inputRefs.current[index + 1].focus();
       }
 
-      // Call onComplete if all inputs are filled
       if (newInputs.every(input => input)) {
         onComplete(newInputs.join(''));
       }
@@ -30,14 +39,13 @@ const OTPInput = ({ length, onComplete }) => {
 
   const handleKeyDown = (e, index) => {
     if (e.key === 'Backspace' && !inputs[index] && index > 0) {
-      // Move focus backward on backspace if current input is empty
       inputRefs.current[index - 1].focus();
     }
   };
 
   return (
     <div className='flex justify-center space-x-2'>
-      {inputs?.map((input, index) => (
+      {inputs.map((input, index) => (
         <input
           key={index}
           ref={el => (inputRefs.current[index] = el)}

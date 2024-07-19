@@ -1,20 +1,26 @@
 import React from 'react';
 
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import LockLogo from '@/assets/images/lock.gif';
 import User from '@/assets/images/user.jpg';
 import ConditionalLink from '@/components/common/links/ConditionalLink';
+import { logoutUser } from '@/features/users/userThunk';
 
 import { links, RoutePaths } from '@/configs';
+import { Redirect } from '@/utils';
 
 const Header = () => {
+  const dispatch = useDispatch();
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
   const Navigate = useNavigate();
-
-  const handleLogOut = () => {
+  const handleLogOut = async () => {
     setDropdownOpen(false);
-    Navigate(RoutePaths.AUTH.SIGN_IN);
+    const resultRedux = await dispatch(logoutUser());
+    if (resultRedux) {
+      Redirect(resultRedux);
+    }
   };
 
   return (

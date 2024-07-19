@@ -1,4 +1,5 @@
 import { postAxios } from '@/services';
+import { handleError } from '@/utils';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const AuthRedux = {
@@ -12,10 +13,7 @@ export const loginUser = createAsyncThunk(
       const response = await postAxios('/auth/login-identifier', data);
       return response;
     } catch (error) {
-      return rejectWithValue({
-        errorMessage: 'An error occurred',
-        originalError: error?.response?.data
-      });
+      return rejectWithValue(handleError(error));
     }
   }
 );
@@ -27,15 +25,12 @@ export const loginGoogleUser = createAsyncThunk(
       const response = await postAxios('/auth/login-social', data);
       return response;
     } catch (error) {
-      return rejectWithValue({
-        errorMessage: 'An error occurred',
-        originalError: error?.response?.data
-      });
+      return rejectWithValue(handleError(error));
     }
   }
 );
 
-export const resignerUser = createAsyncThunk(
+export const registerUser = createAsyncThunk(
   `${AuthRedux.Auth}/register`,
   async (data, { rejectWithValue }) => {
     try {
@@ -43,10 +38,20 @@ export const resignerUser = createAsyncThunk(
 
       return response;
     } catch (error) {
-      return rejectWithValue({
-        errorMessage: 'An error occurred',
-        originalError: error
-      });
+      return rejectWithValue(handleError(error));
+    }
+  }
+);
+
+export const senOTPGeneral = createAsyncThunk(
+  `${AuthRedux.Auth}/otp`,
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await postAxios('/auth/verify-otp', data);
+
+      return response;
+    } catch (error) {
+      return rejectWithValue(handleError(error));
     }
   }
 );

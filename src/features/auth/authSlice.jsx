@@ -2,7 +2,8 @@ import {
   AuthRedux,
   loginGoogleUser,
   loginUser,
-  resignerUser
+  registerUser,
+  senOTPGeneral
 } from '@/features/auth/authThunk';
 
 import { USER_KEYS } from '@/configs';
@@ -41,7 +42,6 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.isLoading = false;
-        showToastSuccess('Sign in successfully');
         setItem(
           USER_KEYS.USER_TOKEN,
           encryptAndStoreKey(action?.payload?.metadata?.accessToken)
@@ -60,17 +60,32 @@ const authSlice = createSlice({
         );
       })
       //* Register
-      .addCase(resignerUser.pending, state => {
+      .addCase(registerUser.pending, state => {
         state.isLoading = true;
       })
-      .addCase(resignerUser.fulfilled, state => {
+      .addCase(registerUser.fulfilled, state => {
+        state.isLoading = false;
+      })
+      //* OTP
+      .addCase(senOTPGeneral.pending, (state, action) => {
+        state.isLoading = true;
+        setItem(
+          USER_KEYS.USER_TOKEN,
+          encryptAndStoreKey(action?.payload?.metadata?.accessToken)
+        );
+      })
+      .addCase(senOTPGeneral.fulfilled, state => {
         state.isLoading = false;
       })
       //* Handle Rejected Actions
       .addMatcher(
-        action => action.type.endsWith('/rejected'),
+        action =>
+          action.type.startsWith(`${AuthRedux.Auth}/`) &&
+          action.type.endsWith('/rejected'),
         (state, action) => {
-          showToastError(action?.payload?.originalError?.message);
+          if (!action?.payload?.showError) {
+            showToastError(action?.payload?.originalError?.message);
+          }
           state.error = action?.payload?.originalError;
           state.isLoading = false;
         }

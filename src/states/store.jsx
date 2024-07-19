@@ -2,6 +2,7 @@ import loggerMiddleware from 'redux-logger';
 
 import { APP_NODE } from '@/constants/appConstants';
 import authSlice from '@/features/auth/authSlice';
+import userSlice from '@/features/users/userSlice';
 
 import { configureStore } from '@reduxjs/toolkit';
 
@@ -15,7 +16,8 @@ if (shouldEnvironment) {
 
 export const store = configureStore({
   reducer: {
-    auth: authSlice
+    auth: authSlice,
+    users: userSlice
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({ serializableCheck: true }).concat(middlewares),
