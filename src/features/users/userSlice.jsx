@@ -1,4 +1,4 @@
-import { UserRedux, logoutUser } from '@/features/users/userThunk';
+import { UserRedux, getProfile, logoutUser } from '@/features/users/userThunk';
 
 import { USER_KEYS } from '@/configs';
 import { removeItem, showToastError, showToastSuccess } from '@/utils';
@@ -33,6 +33,16 @@ const userSlice = createSlice({
         state.isLoading = false;
         showToastSuccess('Logout successfully');
         removeItem(USER_KEYS.USER_TOKEN);
+        removeItem(USER_KEYS.USER_ID);
+      })
+
+      //* Profile
+      .addCase(getProfile.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(getProfile.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload.metadata;
       })
       //* Handle Rejected Actions
       .addMatcher(

@@ -1,14 +1,27 @@
 import React from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import Button from '@/components/common/buttons/Button';
+import { verificationEmail } from '@/features/auth/authThunk';
 
 const AuthVerifyForm = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { email, userId, token } = useParams();
 
-  const handleVerify = () => {
-    navigate('/');
+  const handleVerify = async () => {
+    const resultRedux = await dispatch(
+      verificationEmail({
+        email,
+        user_id: userId,
+        token
+      })
+    );
+    if (resultRedux.payload.status === 200) {
+      return (window.location.href = '/');
+    }
+    return null;
   };
 
   return (

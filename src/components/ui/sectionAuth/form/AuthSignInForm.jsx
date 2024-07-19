@@ -16,7 +16,6 @@ import useAppSelector from '@/hooks/useAppSelector';
 
 import { auth, googleAuthProvider, RoutePaths } from '@/configs';
 import { TYPE_LOGIN } from '@/constants';
-import { showToastSuccess } from '@/utils';
 
 const AuthSignInForm = () => {
   const { isLoading } = useAppSelector(state => state.auth);
@@ -38,7 +37,6 @@ const AuthSignInForm = () => {
 
   const handleRedirect = (rs, type = TYPE_LOGIN.GOOGLE) => {
     if (rs.payload.status === 200) {
-      showToastSuccess('Sign in successfully');
       return (window.location.href = '/');
     }
 

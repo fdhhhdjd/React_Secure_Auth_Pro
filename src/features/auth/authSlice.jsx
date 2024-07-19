@@ -3,14 +3,15 @@ import {
   loginGoogleUser,
   loginUser,
   registerUser,
-  senOTPGeneral
+  senOTPGeneral,
+  verificationEmail
 } from '@/features/auth/authThunk';
 
 import { USER_KEYS } from '@/configs';
 import {
   encryptAndStoreKey,
+  handleErrorCode,
   setItem,
-  showToastError,
   showToastSuccess
 } from '@/utils';
 import { createSlice } from '@reduxjs/toolkit';
@@ -46,6 +47,7 @@ const authSlice = createSlice({
           USER_KEYS.USER_TOKEN,
           encryptAndStoreKey(action?.payload?.metadata?.accessToken)
         );
+        setItem(USER_KEYS.USER_ID, action?.payload?.metadata?.id);
       })
       //* Google Login
       .addCase(loginGoogleUser.pending, state => {
@@ -58,6 +60,7 @@ const authSlice = createSlice({
           USER_KEYS.USER_TOKEN,
           encryptAndStoreKey(action?.payload?.metadata?.accessToken)
         );
+        setItem(USER_KEYS.USER_ID, action?.payload?.metadata?.id);
       })
       //* Register
       .addCase(registerUser.pending, state => {
@@ -65,27 +68,41 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, state => {
         state.isLoading = false;
+        showToastSuccess('Please check your email to verify your account');
       })
       //* OTP
-      .addCase(senOTPGeneral.pending, (state, action) => {
+      .addCase(senOTPGeneral.pending, state => {
         state.isLoading = true;
+      })
+      .addCase(senOTPGeneral.fulfilled, (state, action) => {
+        state.isLoading = false;
         setItem(
           USER_KEYS.USER_TOKEN,
           encryptAndStoreKey(action?.payload?.metadata?.accessToken)
         );
+        setItem(USER_KEYS.USER_ID, action?.payload?.metadata?.id);
       })
-      .addCase(senOTPGeneral.fulfilled, state => {
+
+      //* Verification Email
+      .addCase(verificationEmail.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(verificationEmail.fulfilled, (state, action) => {
         state.isLoading = false;
+        setItem(
+          USER_KEYS.USER_TOKEN,
+          encryptAndStoreKey(action?.payload?.metadata?.accessToken)
+        );
+        setItem(USER_KEYS.USER_ID, action?.payload?.metadata?.id);
       })
+
       //* Handle Rejected Actions
       .addMatcher(
         action =>
           action.type.startsWith(`${AuthRedux.Auth}/`) &&
           action.type.endsWith('/rejected'),
         (state, action) => {
-          if (!action?.payload?.showError) {
-            showToastError(action?.payload?.originalError?.message);
-          }
+          handleErrorCode(action?.payload?.originalError?.code);
           state.error = action?.payload?.originalError;
           state.isLoading = false;
         }

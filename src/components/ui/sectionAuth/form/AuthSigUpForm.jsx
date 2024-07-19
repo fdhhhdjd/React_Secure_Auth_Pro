@@ -8,7 +8,7 @@ import InputField from '@/components/common/inputs/InputField';
 import ConditionalLink from '@/components/common/links/ConditionalLink';
 import LoadingSpinner from '@/components/common/loadings/LoadingSpinner';
 import Paragraph from '@/components/common/paragraph/Paragraph';
-import { loginUser } from '@/features/auth/authThunk';
+import { registerUser } from '@/features/auth/authThunk';
 import useAppSelector from '@/hooks/useAppSelector';
 
 import { RoutePaths } from '@/configs';
@@ -17,7 +17,7 @@ const AuthSignUpForm = () => {
   const { isLoading } = useAppSelector(state => state.auth);
 
   const [state, setState] = React.useState({
-    identifier: ''
+    email: ''
   });
 
   const dispatch = useDispatch();
@@ -29,20 +29,20 @@ const AuthSignUpForm = () => {
     });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    dispatch(loginUser(state));
+    dispatch(registerUser(state));
   };
 
   return (
     <React.Fragment>
       <FormSubmit className='space-y-4 md:space-y-6' onSubmit={handleSubmit}>
         <InputField
-          id='identifier'
+          id='email'
           label='Email'
           type='email'
           placeholder='email@gmail.com'
-          name={state.identifier}
+          name={state.email}
           onChange={handleChange}
         />
         {isLoading ? (

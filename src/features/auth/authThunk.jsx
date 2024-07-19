@@ -1,4 +1,4 @@
-import { postAxios } from '@/services';
+import { getAxios, postAxios } from '@/services';
 import { handleError } from '@/utils';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
@@ -48,6 +48,19 @@ export const senOTPGeneral = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const response = await postAxios('/auth/verify-otp', data);
+
+      return response;
+    } catch (error) {
+      return rejectWithValue(handleError(error));
+    }
+  }
+);
+
+export const verificationEmail = createAsyncThunk(
+  `${AuthRedux.Auth}/verificationEmail`,
+  async (params, { rejectWithValue }) => {
+    try {
+      const response = await getAxios('/auth/veri-account', params);
 
       return response;
     } catch (error) {
