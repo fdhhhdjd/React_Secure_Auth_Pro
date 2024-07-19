@@ -1,11 +1,23 @@
-import { AuthRedux, loginUser } from '@/features/auth/authThunk';
+import {
+  AuthRedux,
+  loginGoogleUser,
+  loginUser,
+  resignerUser
+} from '@/features/auth/authThunk';
 
+import { USER_KEYS } from '@/configs';
+import {
+  encryptAndStoreKey,
+  setItem,
+  showToastError,
+  showToastSuccess
+} from '@/utils';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isLoading: false,
   error: null,
-  dataAuth: null
+  user: null
 };
 
 const authSlice = createSlice({
@@ -15,29 +27,57 @@ const authSlice = createSlice({
     clearAllInit: state => {
       state.isLoading = false;
       state.error = null;
-      state.dataAuth = null;
+      state.user = null;
+    },
+    clearLoading: state => {
+      state.isLoading = false;
     }
   },
   extraReducers: builder => {
-    //* Login
-    builder.addCase(loginUser.pending, (state, _) => {
-      state.isLoading = true;
-    });
-
-    builder.addCase(loginUser.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.dataAuth = action.payload;
-    });
-
-    builder.addMatcher(
-      action => action.type.endsWith('/rejected'),
-      (state, action) => {
-        state.error = action.payload;
-      }
-    );
+    builder
+      //* Login
+      .addCase(loginUser.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        showToastSuccess('Sign in successfully');
+        setItem(
+          USER_KEYS.USER_TOKEN,
+          encryptAndStoreKey(action?.payload?.metadata?.accessToken)
+        );
+      })
+      //* Google Login
+      .addCase(loginGoogleUser.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(loginGoogleUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        showToastSuccess('Sign in with Google successfully');
+        setItem(
+          USER_KEYS.USER_TOKEN,
+          encryptAndStoreKey(action?.payload?.metadata?.accessToken)
+        );
+      })
+      //* Register
+      .addCase(resignerUser.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(resignerUser.fulfilled, state => {
+        state.isLoading = false;
+      })
+      //* Handle Rejected Actions
+      .addMatcher(
+        action => action.type.endsWith('/rejected'),
+        (state, action) => {
+          showToastError(action?.payload?.originalError?.message);
+          state.error = action?.payload?.originalError;
+          state.isLoading = false;
+        }
+      );
   }
 });
 
-export const { clearAllInit } = authSlice.actions;
+export const { clearAllInit, clearLoading } = authSlice.actions;
 
 export default authSlice.reducer;

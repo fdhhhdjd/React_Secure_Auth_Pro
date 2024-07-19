@@ -10,7 +10,7 @@ import ConditionalLink from '@/components/common/links/ConditionalLink';
 import LoadingSpinner from '@/components/common/loadings/LoadingSpinner';
 import Paragraph from '@/components/common/paragraph/Paragraph';
 import SocialAuthButton from '@/components/ui/sectionAuth/SocialAuthButton';
-import { loginUser } from '@/features/auth/authThunk';
+import { loginGoogleUser, loginUser } from '@/features/auth/authThunk';
 import useAppSelector from '@/hooks/useAppSelector';
 
 import { auth, googleAuthProvider, RoutePaths } from '@/configs';
@@ -32,23 +32,33 @@ const AuthSignInForm = () => {
     });
   };
 
+  const handleRedirect = rs => {
+    if (rs.payload.status === 200) {
+      return (window.location.href = '/');
+    }
+
+    return null;
+  };
+
   const loginWithGooglePopup = async () => {
     try {
       const result = await signInWithPopup(auth, googleAuthProvider);
       const {
         user: { uid }
       } = result;
-      console.info(uid);
-      return uid;
+
+      const resultRedux = await dispatch(loginGoogleUser({ type: 10, uid }));
+      handleRedirect(resultRedux);
     } catch (error) {
       console.info(error.message);
     }
     return null;
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    dispatch(loginUser(state));
+    const resultRedux = await dispatch(loginUser(state));
+    handleRedirect(resultRedux);
   };
 
   return (

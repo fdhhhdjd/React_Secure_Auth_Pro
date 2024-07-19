@@ -45,14 +45,6 @@ const AuthSignUpForm = () => {
           name={state.identifier}
           onChange={handleChange}
         />
-        <div className='flex items-center justify-between'>
-          <ConditionalLink
-            to={RoutePaths.AUTH.FORGOT_PASSWORD}
-            className='text-sm font-medium text-orange-500 hover:underline'
-          >
-            Forgot password?
-          </ConditionalLink>
-        </div>
         {isLoading ? (
           <LoadingSpinner />
         ) : (

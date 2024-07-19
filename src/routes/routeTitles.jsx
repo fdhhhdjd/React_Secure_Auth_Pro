@@ -34,12 +34,8 @@ const routeTitles = [
     title: `${TITLE_CONSTANTS.AUTH} | OTP Code`
   },
   {
-    pattern: /^\/user\/create$/,
-    title: `${TITLE_CONSTANTS.USER} | Create`
-  },
-  {
-    pattern: /^\/user\/edit\/(\d+)$/,
-    title: id => `${TITLE_CONSTANTS.USER} | Edit | ${id}`
+    pattern: /^\/user\/reset-password$/,
+    title: `${TITLE_CONSTANTS.USER} | Reset Pass`
   },
   { pattern: /.*/, title: TITLE_CONSTANTS.NOTFOUND }
 ];

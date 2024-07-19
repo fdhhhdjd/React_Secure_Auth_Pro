@@ -99,11 +99,11 @@ const routes = [
             element: <OTPCode />
           },
           {
-            path: 'reset-password',
+            path: 'reset/password/:user_id/:email/:token',
             element: <ResetPass />
           },
           {
-            path: 'create/account/:email/:expired/:user_id/:token',
+            path: 'verify/account/:email/:expired/:user_id/:token',
             element: <Verify />
           }
         ]
