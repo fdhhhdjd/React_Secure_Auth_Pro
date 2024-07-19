@@ -8,7 +8,7 @@ import InputField from '@/components/common/inputs/InputField';
 import ConditionalLink from '@/components/common/links/ConditionalLink';
 import LoadingSpinner from '@/components/common/loadings/LoadingSpinner';
 import Paragraph from '@/components/common/paragraph/Paragraph';
-import { loginUser } from '@/features/auth/authThunk';
+import { forgetPass } from '@/features/auth/authThunk';
 import useAppSelector from '@/hooks/useAppSelector';
 
 import { RoutePaths } from '@/configs';
@@ -17,8 +17,9 @@ const AuthForgetForm = () => {
   const { isLoading } = useAppSelector(state => state.auth);
 
   const [state, setState] = React.useState({
-    identifier: ''
+    email: ''
   });
+  const [formKey, setFormKey] = React.useState(false);
 
   const dispatch = useDispatch();
 
@@ -29,20 +30,30 @@ const AuthForgetForm = () => {
     });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    dispatch(loginUser(state));
+    const resultRedux = await dispatch(forgetPass(state));
+
+    if (resultRedux.payload.status === 200) {
+      setState({ email: '' });
+      setFormKey(prevKey => !prevKey);
+    }
+    return null;
   };
 
   return (
     <React.Fragment>
-      <FormSubmit className='space-y-4 md:space-y-6' onSubmit={handleSubmit}>
+      <FormSubmit
+        key={formKey}
+        className='space-y-4 md:space-y-6'
+        onSubmit={handleSubmit}
+      >
         <InputField
-          id='identifier'
+          id='email'
           label='Forget'
           type='email'
           placeholder='Email'
-          name={state.identifier}
+          value={state.email}
           onChange={handleChange}
         />
         {isLoading ? (

@@ -1,7 +1,7 @@
 import { UserRedux, getProfile, logoutUser } from '@/features/users/userThunk';
 
 import { USER_KEYS } from '@/configs';
-import { removeItem, showToastError, showToastSuccess } from '@/utils';
+import { handleErrorCode, removeItem, showToastSuccess } from '@/utils';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -50,9 +50,7 @@ const userSlice = createSlice({
           action.type.startsWith(`${UserRedux.Users}/`) &&
           action.type.endsWith('/rejected'),
         (state, action) => {
-          if (!action?.payload?.showError) {
-            showToastError(action?.payload?.originalError?.message);
-          }
+          handleErrorCode(action?.payload?.originalError?.code);
           state.error = action?.payload?.originalError;
           state.isLoading = false;
         }

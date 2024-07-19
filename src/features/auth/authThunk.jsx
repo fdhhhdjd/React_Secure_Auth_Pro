@@ -68,3 +68,16 @@ export const verificationEmail = createAsyncThunk(
     }
   }
 );
+
+export const forgetPass = createAsyncThunk(
+  `${AuthRedux.Auth}/forget`,
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await postAxios('/auth/forget', data);
+
+      return response;
+    } catch (error) {
+      return rejectWithValue(handleError(error));
+    }
+  }
+);

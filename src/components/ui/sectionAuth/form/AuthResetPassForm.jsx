@@ -12,6 +12,7 @@ import { RoutePaths } from '@/configs';
 
 const AuthResetPassForm = () => {
   const { isLoading } = useAppSelector(state => state.auth);
+  // const { userId, token } = useParams();
 
   const [state, setState] = React.useState({
     password: '',

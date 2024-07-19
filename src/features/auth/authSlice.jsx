@@ -1,5 +1,6 @@
 import {
   AuthRedux,
+  forgetPass,
   loginGoogleUser,
   loginUser,
   registerUser,
@@ -81,6 +82,15 @@ const authSlice = createSlice({
           encryptAndStoreKey(action?.payload?.metadata?.accessToken)
         );
         setItem(USER_KEYS.USER_ID, action?.payload?.metadata?.id);
+      })
+
+      //* Forget
+      .addCase(forgetPass.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(forgetPass.fulfilled, (state, _) => {
+        state.isLoading = false;
+        showToastSuccess('Please, check your email to reset password');
       })
 
       //* Verification Email
