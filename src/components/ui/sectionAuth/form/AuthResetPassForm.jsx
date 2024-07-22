@@ -37,7 +37,7 @@ const AuthResetPassForm = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     const resultRedux = await dispatch(
-      resetPass({ password: state.password, user_id: userId, token })
+      resetPass({ password: state.password, user_id: Number(userId), token })
     );
     if (resultRedux.payload.status === 200) {
       setState({ password: '', re_password: '' });
