@@ -15,7 +15,7 @@ import { loginGoogleUser, loginUser } from '@/features/auth/authThunk';
 import useAppSelector from '@/hooks/useAppSelector';
 
 import { auth, googleAuthProvider, RoutePaths } from '@/configs';
-import { codeConstants, TYPE_LOGIN } from '@/constants';
+import { codeConstants, typeLogin } from '@/constants';
 
 const AuthSignInForm = () => {
   const { isLoading } = useAppSelector(state => state.auth);
@@ -45,7 +45,7 @@ const AuthSignInForm = () => {
     const towFactorEnable =
       rs.payload.status === 200 &&
       rs.payload?.metadata?.code === codeConstants.TWO_FACTOR_ENABLE &&
-      type === TYPE_LOGIN.LOGIN;
+      type === typeLogin.LOGIN;
     if (towFactorEnable) {
       Navigate(RoutePaths.AUTH.OTP);
     }
@@ -61,7 +61,7 @@ const AuthSignInForm = () => {
       } = result;
 
       const resultRedux = await dispatch(loginGoogleUser({ type: 10, uid }));
-      handleRedirect(resultRedux, TYPE_LOGIN.GOOGLE);
+      handleRedirect(resultRedux, typeLogin.GOOGLE);
     } catch (error) {
       console.info(error.message);
     }
@@ -71,7 +71,7 @@ const AuthSignInForm = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     const resultRedux = await dispatch(loginUser(state));
-    handleRedirect(resultRedux, TYPE_LOGIN.LOGIN);
+    handleRedirect(resultRedux, typeLogin.LOGIN);
   };
 
   return (

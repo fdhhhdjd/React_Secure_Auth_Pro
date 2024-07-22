@@ -13,6 +13,7 @@ import { resetPass } from '@/features/auth/authThunk';
 import useAppSelector from '@/hooks/useAppSelector';
 
 import { RoutePaths } from '@/configs';
+import { HttpStatusCode } from '@/constants';
 
 const AuthResetPassForm = () => {
   const { isLoading } = useAppSelector(state => state.auth);
@@ -39,7 +40,7 @@ const AuthResetPassForm = () => {
     const resultRedux = await dispatch(
       resetPass({ password: state.password, user_id: Number(userId), token })
     );
-    if (resultRedux.payload.status === 200) {
+    if (resultRedux.payload.status === HttpStatusCode.OK) {
       setState({ password: '', re_password: '' });
       setFormKey(prevKey => !prevKey);
       Navigation(RoutePaths.AUTH.SIGN_IN);

@@ -12,7 +12,7 @@ import { senOTPGeneral } from '@/features/auth/authThunk';
 import useAppSelector from '@/hooks/useAppSelector';
 
 import { RoutePaths } from '@/configs';
-import { TIME_CONSTANTS, TYPE_LOGIN } from '@/constants';
+import { TIME_CONSTANTS, typeLogin } from '@/constants';
 import { cn } from '@/helpers';
 import { formatTime, showToastSuccess } from '@/utils';
 
@@ -32,7 +32,7 @@ const AuthOTPForm = () => {
   };
 
   const handleRedirect = (rs, type) => {
-    const towFactor = type === TYPE_LOGIN.LOGIN && rs.payload.status === 200;
+    const towFactor = type === typeLogin.LOGIN && rs.payload.status === 200;
     if (towFactor) {
       showToastSuccess('Sign in successfully');
       return (window.location.href = '/');
@@ -56,7 +56,7 @@ const AuthOTPForm = () => {
             otp: code
           })
         );
-        handleRedirect(resultRedux, TYPE_LOGIN.LOGIN);
+        handleRedirect(resultRedux, typeLogin.LOGIN);
       }
     };
     handleSendOTP();

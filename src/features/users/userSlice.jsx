@@ -39,6 +39,7 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.user = action.payload.metadata;
       })
+
       //* Handle Rejected Actions
       .addMatcher(
         action =>

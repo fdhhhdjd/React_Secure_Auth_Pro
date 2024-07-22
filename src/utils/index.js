@@ -15,3 +15,5 @@ export * from '@/utils/toastUtils';
 export * from '@/utils/redirectUtils';
 
 export * from '@/utils/errorHandlerUtils';
+
+export * from '@/utils/typeUtils';

@@ -1,4 +1,5 @@
-import { getAxios } from '@/services';
+import { getAxios, postAxios } from '@/services';
+import { handleError } from '@/utils';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const UserRedux = {
@@ -12,10 +13,7 @@ export const logoutUser = createAsyncThunk(
       const response = await getAxios('/user/logout');
       return response;
     } catch (error) {
-      return rejectWithValue({
-        errorMessage: 'An error occurred',
-        originalError: error?.response?.data
-      });
+      return rejectWithValue(handleError(error));
     }
   }
 );
@@ -27,10 +25,19 @@ export const getProfile = createAsyncThunk(
       const response = await getAxios(`/user/profile/${data.userId}`);
       return response;
     } catch (error) {
-      return rejectWithValue({
-        errorMessage: 'An error occurred',
-        originalError: error?.response?.data
-      });
+      return rejectWithValue(handleError(error));
+    }
+  }
+);
+
+export const twoFactorAuth = createAsyncThunk(
+  `${UserRedux.Users}/two-factor`,
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await postAxios('/user/enable-tow-factor', data);
+      return response;
+    } catch (error) {
+      return rejectWithValue(handleError(error));
     }
   }
 );

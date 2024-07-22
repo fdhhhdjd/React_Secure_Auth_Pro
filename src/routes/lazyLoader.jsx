@@ -22,6 +22,8 @@ export const Footer = withSuspense(lazy(() => import('@/layouts/footer')));
 //* Dashboard
 export const DashBoardLayout = withSuspense(DashBoardWithAccess);
 export const Dashboard = withSuspense(DashBoardWithPermission);
+export const About = withSuspense(lazy(() => import('@/pages/about')));
+export const Contact = withSuspense(lazy(() => import('@/pages/contact')));
 
 //* USER
 export const UserLayout = withSuspense(UserWithAccess);

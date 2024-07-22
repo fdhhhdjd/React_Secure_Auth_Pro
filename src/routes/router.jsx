@@ -1,7 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import {
+  About,
   ChangePass,
+  Contact,
   DashBoardLayout,
   Dashboard,
   Error5XX,
@@ -36,6 +38,16 @@ const routes = [
           {
             index: true,
             element: <Profile />,
+            errorElement: <Error5XX />
+          },
+          {
+            path: '/about',
+            element: <About />,
+            errorElement: <Error5XX />
+          },
+          {
+            path: '/contact',
+            element: <Contact />,
             errorElement: <Error5XX />
           },
 
