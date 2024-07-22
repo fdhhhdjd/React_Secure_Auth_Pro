@@ -15,7 +15,7 @@ import { loginGoogleUser, loginUser } from '@/features/auth/authThunk';
 import useAppSelector from '@/hooks/useAppSelector';
 
 import { auth, googleAuthProvider, RoutePaths } from '@/configs';
-import { TYPE_LOGIN } from '@/constants';
+import { codeConstants, TYPE_LOGIN } from '@/constants';
 
 const AuthSignInForm = () => {
   const { isLoading } = useAppSelector(state => state.auth);
@@ -35,14 +35,18 @@ const AuthSignInForm = () => {
     });
   };
 
-  const handleRedirect = (rs, type = TYPE_LOGIN.GOOGLE) => {
-    if (rs.payload.status === 200) {
+  const handleRedirect = (rs, type) => {
+    const towFactorDisabled =
+      rs.payload.status === 200 && !rs.payload.metadata.code;
+    if (towFactorDisabled) {
       return (window.location.href = '/');
     }
 
-    const towFactor =
-      rs.payload.originalError.code === 12008 && type === TYPE_LOGIN.LOGIN;
-    if (towFactor) {
+    const towFactorEnable =
+      rs.payload.status === 200 &&
+      rs.payload?.metadata?.code === codeConstants.TWO_FACTOR_ENABLE &&
+      type === TYPE_LOGIN.LOGIN;
+    if (towFactorEnable) {
       Navigate(RoutePaths.AUTH.OTP);
     }
 

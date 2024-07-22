@@ -1,7 +1,7 @@
 import { UserRedux, getProfile, logoutUser } from '@/features/users/userThunk';
 
 import { USER_KEYS } from '@/configs';
-import { handleErrorCode, removeItem, showToastSuccess } from '@/utils';
+import { handleErrorCode, removeItem } from '@/utils';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -26,12 +26,7 @@ const userSlice = createSlice({
   extraReducers: builder => {
     builder
       //* Logout
-      .addCase(logoutUser.pending, state => {
-        state.isLoading = true;
-      })
-      .addCase(logoutUser.fulfilled, (state, __) => {
-        state.isLoading = false;
-        showToastSuccess('Logout successfully');
+      .addCase(logoutUser.fulfilled, (_, __) => {
         removeItem(USER_KEYS.USER_TOKEN);
         removeItem(USER_KEYS.USER_ID);
       })

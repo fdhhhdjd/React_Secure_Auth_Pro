@@ -10,6 +10,7 @@ import {
 } from '@/features/auth/authThunk';
 
 import { USER_KEYS } from '@/configs';
+import { HttpStatusCode } from '@/constants';
 import {
   encryptAndStoreKey,
   handleErrorCode,
@@ -45,11 +46,17 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.isLoading = false;
-        setItem(
-          USER_KEYS.USER_TOKEN,
-          encryptAndStoreKey(action?.payload?.metadata?.accessToken)
-        );
-        setItem(USER_KEYS.USER_ID, action?.payload?.metadata?.id);
+        const towFactorDisabled =
+          action.payload.status === HttpStatusCode.OK &&
+          !action.payload.metadata.code;
+
+        if (towFactorDisabled) {
+          setItem(
+            USER_KEYS.USER_TOKEN,
+            encryptAndStoreKey(action?.payload?.metadata?.accessToken)
+          );
+          setItem(USER_KEYS.USER_ID, action?.payload?.metadata?.id);
+        }
       })
       //* Google Login
       .addCase(loginGoogleUser.pending, state => {
@@ -57,7 +64,6 @@ const authSlice = createSlice({
       })
       .addCase(loginGoogleUser.fulfilled, (state, action) => {
         state.isLoading = false;
-        showToastSuccess('Sign in with Google successfully');
         setItem(
           USER_KEYS.USER_TOKEN,
           encryptAndStoreKey(action?.payload?.metadata?.accessToken)

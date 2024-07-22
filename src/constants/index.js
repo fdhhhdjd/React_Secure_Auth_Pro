@@ -7,3 +7,5 @@ export * from '@/constants/httpReasonPhrasesConstants';
 export * from '@/constants/rolePermissionConstants';
 
 export * from '@/constants/typeConstants';
+
+export * from '@/constants/codeConstants';

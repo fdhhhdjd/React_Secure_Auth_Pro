@@ -18,9 +18,7 @@ const Header = () => {
   const handleLogOut = async () => {
     setDropdownOpen(false);
     const resultRedux = await dispatch(logoutUser());
-    if (resultRedux) {
-      Redirect(resultRedux);
-    }
+    Redirect(resultRedux);
   };
 
   return (

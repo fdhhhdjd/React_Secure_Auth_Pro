@@ -17,7 +17,7 @@ if (shouldEnvironment) {
 export const store = configureStore({
   reducer: {
     auth: authSlice,
-    users: userSlice
+    user: userSlice
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({ serializableCheck: true }).concat(middlewares),
