@@ -22,13 +22,13 @@ const AuthOTPForm = () => {
   const [code, setCode] = React.useState();
   const [reset, setReset] = React.useState(false);
   const [countdown, setCountdown] = React.useState(
-    TIME_CONSTANTS._15_MINUTES / 1000
+    TIME_CONSTANTS._5_MINUTES / 1000
   );
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
-    setCountdown(TIME_CONSTANTS._15_MINUTES / 1000);
+    setCountdown(TIME_CONSTANTS._5_MINUTES / 1000);
   };
 
   const handleRedirect = (rs, type) => {

@@ -14,6 +14,7 @@ import useAppSelector from '@/hooks/useAppSelector';
 
 import { RoutePaths } from '@/configs';
 import { HttpStatusCode } from '@/constants';
+import { showToastWarning } from '@/utils';
 
 const AuthResetPassForm = () => {
   const { isLoading } = useAppSelector(state => state.auth);
@@ -26,8 +27,6 @@ const AuthResetPassForm = () => {
     re_password: ''
   });
 
-  const [formKey, setFormKey] = React.useState(false);
-
   const handleChange = e => {
     setState({
       ...state,
@@ -37,23 +36,21 @@ const AuthResetPassForm = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    if (state.password !== state.rePassword) {
+      return showToastWarning('Passwords do not match.');
+    }
     const resultRedux = await dispatch(
       resetPass({ password: state.password, user_id: Number(userId), token })
     );
     if (resultRedux.payload.status === HttpStatusCode.OK) {
       setState({ password: '', re_password: '' });
-      setFormKey(prevKey => !prevKey);
       Navigation(RoutePaths.AUTH.SIGN_IN);
     }
     return null;
   };
   return (
     <React.Fragment>
-      <FormSubmit
-        key={formKey}
-        className='space-y-4 md:space-y-6'
-        onSubmit={handleSubmit}
-      >
+      <FormSubmit className='space-y-4 md:space-y-6' onSubmit={handleSubmit}>
         <InputField
           id='password'
           label='New Password'
