@@ -1,10 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import Profile from '@/pages/profile';
 import {
   About,
   ChangePass,
   Contact,
-  DashBoardLayout,
   Dashboard,
   Error5XX,
   Forget,
@@ -12,12 +12,11 @@ import {
   LayoutMain,
   NotFound,
   OTPCode,
-  Profile,
   ResetPass,
+  Settings,
   SignIn,
   SignUp,
   Unauthorized,
-  User,
   UserLayout,
   Verify
 } from '@/routes/lazyLoader';
@@ -37,7 +36,7 @@ const routes = [
           //* Profile Page
           {
             index: true,
-            element: <Profile />,
+            element: <Dashboard />,
             errorElement: <Error5XX />
           },
           {
@@ -51,19 +50,6 @@ const routes = [
             errorElement: <Error5XX />
           },
 
-          //* Dashboard Page
-          {
-            path: 'dashboard',
-            element: <DashBoardLayout />,
-            errorElement: <Error5XX />,
-            children: [
-              {
-                index: true,
-                element: <Dashboard />
-              }
-            ]
-          },
-
           //* User Page
           {
             path: 'user',
@@ -72,11 +58,15 @@ const routes = [
             children: [
               {
                 index: true,
-                element: <User />
+                element: <Profile />
               },
               {
                 path: 'change-password',
                 element: <ChangePass />
+              },
+              {
+                path: 'settings',
+                element: <Settings />
               }
             ]
           },

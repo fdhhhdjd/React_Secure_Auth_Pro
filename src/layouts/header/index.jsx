@@ -14,7 +14,9 @@ import { Redirect } from '@/utils';
 const Header = () => {
   const dispatch = useDispatch();
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
+
   const Navigate = useNavigate();
+
   const handleLogOut = async () => {
     setDropdownOpen(false);
     const resultRedux = await dispatch(logoutUser());
@@ -58,11 +60,28 @@ const Header = () => {
                 <div className='py-1'>
                   <button
                     className='block px-4 py-2 text-sm text-black-700 hover:bg-black-100'
+                    onClick={() => Navigate(RoutePaths.USER.BASE)}
+                  >
+                    Profile
+                  </button>
+                </div>
+                <div className='py-1'>
+                  <button
+                    className='block px-4 py-2 text-sm text-black-700 hover:bg-black-100'
                     onClick={() => Navigate(RoutePaths.USER.CHANGE_PASSWORD)}
                   >
                     Change Password
                   </button>
                 </div>
+                <div className='py-1'>
+                  <button
+                    className='block px-4 py-2 text-sm text-black-700 hover:bg-black-100'
+                    onClick={() => Navigate(RoutePaths.USER.SETTINGS)}
+                  >
+                    Settings
+                  </button>
+                </div>
+
                 <div className='py-1'>
                   <button
                     className='block px-4 py-2 text-sm text-black-700 hover:bg-black-100'

@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 
 import User from '@/assets/images/user.jpg';
 import LoadingSpinner from '@/components/common/loadings/LoadingSpinner';
-import ConvertTwoFactor from '@/components/ui/sectionUser/two-factor/ConvertTwoFactor';
 import { getProfile } from '@/features/users/userThunk';
 import useAppSelector from '@/hooks/useAppSelector';
 
@@ -69,11 +68,6 @@ const Profile = () => {
                 <div className='text-xs mt-0 mb-2 text-slate-400 font-bold uppercase'>
                   <i className='fas fa-map-marker-alt mr-2 text-slate-400 opacity-75' />
                   {user.hidden_email}
-                </div>
-              </div>
-              <div className='mt-6 py-6 border-t border-slate-200 text-center'>
-                <div className='flex flex-wrap justify-center'>
-                  <ConvertTwoFactor />
                 </div>
               </div>
               <div className='mt-6 py-6 border-t border-slate-200 text-center'>

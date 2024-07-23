@@ -52,6 +52,8 @@ module.exports = {
     'react/jsx-one-expression-per-line': 'off',
     'no-confusing-arrow': 'off',
     'react/no-array-index-key': 'off',
+    // 'jsx-a11y/no-static-element-interactions': 'off',
+    // 'jsx-a11y/click-events-have-key-events': 'off',
     'object-curly-newline': 'off',
     'no-return-assign': 'off',
     'import/no-useless-path-segments': 'off',

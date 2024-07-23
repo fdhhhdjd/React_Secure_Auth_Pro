@@ -29,6 +29,7 @@ export const Contact = withSuspense(lazy(() => import('@/pages/contact')));
 export const UserLayout = withSuspense(UserWithAccess);
 export const User = withSuspense(UserWithPermission);
 export const ChangePass = withSuspense(ChangePassWithPermission);
+export const Settings = withSuspense(lazy(() => import('@/pages/settings')));
 
 //* PROFILE
 export const Profile = withSuspense(lazy(() => import('@/pages/profile')));

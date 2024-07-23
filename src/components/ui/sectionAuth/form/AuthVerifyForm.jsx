@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom';
 import Button from '@/components/common/buttons/Button';
 import { verificationEmail } from '@/features/auth/authThunk';
 
+import { HttpStatusCode } from '@/constants';
+
 const AuthVerifyForm = () => {
   const dispatch = useDispatch();
   const { email, userId, token } = useParams();
@@ -18,8 +20,8 @@ const AuthVerifyForm = () => {
         token
       })
     );
-    if (resultRedux.payload.status === 200) {
-      return (window.location.href = '/');
+    if (resultRedux.payload.status === HttpStatusCode.OK) {
+      return (window.location.href = '/user');
     }
     return null;
   };

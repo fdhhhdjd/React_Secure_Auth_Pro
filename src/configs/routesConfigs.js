@@ -11,7 +11,7 @@ export const RoutePaths = {
   },
   USER: {
     BASE: '/user',
-    PROFILE: '/user/profile',
-    CHANGE_PASSWORD: '/user/change-password'
+    CHANGE_PASSWORD: '/user/change-password',
+    SETTINGS: '/user/settings'
   }
 };

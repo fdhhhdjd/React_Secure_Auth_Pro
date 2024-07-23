@@ -6,6 +6,7 @@ import { RoutePaths } from '@/configs';
 const Footer = () => {
   return (
     <footer>
+      <hr className='my-10 border-gray-200 light:border-gray-700' />
       <div className='container px-6 py-8 mx-auto'>
         <div className='flex flex-col items-center text-center'>
           <ConditionalLink to={RoutePaths.HOME.BASE}>
