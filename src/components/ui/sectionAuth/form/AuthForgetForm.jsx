@@ -12,6 +12,9 @@ import { forgetPass } from '@/features/auth/authThunk';
 import useAppSelector from '@/hooks/useAppSelector';
 
 import { RoutePaths } from '@/configs';
+import { HttpStatusCode } from '@/constants';
+import { isValidEmail, isValueEmpty } from '@/helpers';
+import { showToastWarning } from '@/utils';
 
 const AuthForgetForm = () => {
   const { isLoading } = useAppSelector(state => state.auth);
@@ -19,7 +22,6 @@ const AuthForgetForm = () => {
   const [state, setState] = React.useState({
     email: ''
   });
-  const [formKey, setFormKey] = React.useState(false);
 
   const dispatch = useDispatch();
 
@@ -32,29 +34,35 @@ const AuthForgetForm = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
+
+    if (isValueEmpty(state)) {
+      return showToastWarning('Please enter full input!');
+    }
+
+    if (!isValidEmail(state.email)) {
+      return showToastWarning('Email is invalid!');
+    }
+
     const resultRedux = await dispatch(forgetPass(state));
 
-    if (resultRedux.payload.status === 200) {
+    if (resultRedux?.payload?.status === HttpStatusCode.OK) {
       setState({ email: '' });
-      setFormKey(prevKey => !prevKey);
     }
     return null;
   };
 
   return (
     <React.Fragment>
-      <FormSubmit
-        key={formKey}
-        className='space-y-4 md:space-y-6'
-        onSubmit={handleSubmit}
-      >
+      <FormSubmit className='space-y-4 md:space-y-6' onSubmit={handleSubmit}>
         <InputField
           id='email'
           label='Forget'
           type='email'
           placeholder='Email'
+          name={state.email}
           value={state.email}
           onChange={handleChange}
+          autoFocus
         />
         {isLoading ? (
           <LoadingSpinner />

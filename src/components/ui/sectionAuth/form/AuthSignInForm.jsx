@@ -15,7 +15,9 @@ import { loginGoogleUser, loginUser } from '@/features/auth/authThunk';
 import useAppSelector from '@/hooks/useAppSelector';
 
 import { auth, googleAuthProvider, RoutePaths } from '@/configs';
-import { codeConstants, typeLogin } from '@/constants';
+import { codeConstants, HttpStatusCode, typeLogin } from '@/constants';
+import { isValidPassword, isValueEmpty } from '@/helpers';
+import { showToastWarning } from '@/utils';
 
 const AuthSignInForm = () => {
   const { isLoading } = useAppSelector(state => state.auth);
@@ -37,13 +39,13 @@ const AuthSignInForm = () => {
 
   const handleRedirect = (rs, type) => {
     const towFactorDisabled =
-      rs.payload.status === 200 && !rs.payload.metadata.code;
+      rs.payload.status === HttpStatusCode.OK && !rs.payload.metadata.code;
     if (towFactorDisabled) {
       return (window.location.href = '/');
     }
 
     const towFactorEnable =
-      rs.payload.status === 200 &&
+      rs.payload.status === HttpStatusCode.OK &&
       rs.payload?.metadata?.code === codeConstants.TWO_FACTOR_ENABLE &&
       type === typeLogin.LOGIN;
     if (towFactorEnable) {
@@ -70,8 +72,17 @@ const AuthSignInForm = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
+
+    if (isValueEmpty(state)) {
+      return showToastWarning('Please enter full input!');
+    }
+
+    if (!isValidPassword(state.password)) {
+      return showToastWarning('Email, username or phone or Pass is invalid!');
+    }
+
     const resultRedux = await dispatch(loginUser(state));
-    handleRedirect(resultRedux, typeLogin.LOGIN);
+    return handleRedirect(resultRedux, typeLogin.LOGIN);
   };
 
   return (
@@ -95,7 +106,9 @@ const AuthSignInForm = () => {
           type='email'
           placeholder='Email Or Phone, Username'
           name={state.identifier}
+          value={state.identifier}
           onChange={handleChange}
+          autoFocus
         />
         <InputField
           id='password'
@@ -103,6 +116,7 @@ const AuthSignInForm = () => {
           type='password'
           placeholder='••••••••'
           name={state.password}
+          value={state.password}
           onChange={handleChange}
           isPassword
         />

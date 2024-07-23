@@ -12,6 +12,9 @@ import { registerUser } from '@/features/auth/authThunk';
 import useAppSelector from '@/hooks/useAppSelector';
 
 import { RoutePaths } from '@/configs';
+import { HttpStatusCode } from '@/constants';
+import { isValidEmail, isValueEmpty } from '@/helpers';
+import { showToastWarning } from '@/utils';
 
 const AuthSignUpForm = () => {
   const { isLoading } = useAppSelector(state => state.auth);
@@ -31,7 +34,20 @@ const AuthSignUpForm = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    dispatch(registerUser(state));
+
+    if (isValueEmpty(state)) {
+      return showToastWarning('Please enter full input!');
+    }
+
+    if (!isValidEmail(state.email)) {
+      return showToastWarning('Email is invalid!');
+    }
+
+    return dispatch(registerUser(state)).then(rs => {
+      if (rs.payload.status === HttpStatusCode.CREATED) {
+        setState({ email: '' });
+      }
+    });
   };
 
   return (
@@ -43,7 +59,9 @@ const AuthSignUpForm = () => {
           type='email'
           placeholder='email@gmail.com'
           name={state.email}
+          value={state.email}
           onChange={handleChange}
+          autoFocus
         />
         {isLoading ? (
           <LoadingSpinner />

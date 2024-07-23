@@ -8,6 +8,9 @@ export const handleError = (error, customMessage = 'An error occurred') => ({
 
 export const handleErrorCode = errorCode => {
   switch (errorCode) {
+    case 3000:
+      showToastError('Email is invalid!');
+      break;
     case 5005:
       showToastError('You have been blocked!');
       break;
@@ -22,6 +25,9 @@ export const handleErrorCode = errorCode => {
     case 15001:
     case 12002:
       showToastError('Email or password invalid!');
+      break;
+    case 15005:
+      showToastError('This password has been changed!');
       break;
     case 16000:
       showToastError('OTP invalid!');

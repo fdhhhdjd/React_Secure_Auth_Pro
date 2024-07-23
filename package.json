@@ -50,7 +50,8 @@
     "react-router-dom": "^6.23.1",
     "react-toastify": "^10.0.5",
     "redux-logger": "^3.0.6",
-    "tailwind-merge": "^2.4.0"
+    "tailwind-merge": "^2.4.0",
+    "validator": "^13.12.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React from 'react';
 
 const InputField = ({
   id,
@@ -7,13 +7,22 @@ const InputField = ({
   placeholder,
   name,
   onChange,
-  isPassword = false
+  isPassword = false,
+  autoFocus = false,
+  value
 }) => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = React.useState(false);
+  const inputRef = React.useRef(null);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
+  React.useEffect(() => {
+    if (autoFocus && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [autoFocus]);
 
   return (
     <div className='relative'>
@@ -25,12 +34,15 @@ const InputField = ({
       </label>
       <div className='flex items-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg '>
         <input
+          ref={inputRef}
           type={type === 'password' && !showPassword ? 'password' : 'text'}
           id={id}
-          className='flex-1 p-2.5 placeholder-gray-400 rounded-lg'
+          className='flex-1 p-2.5 placeholder-gray-400 rounded-lg focus:outline-none'
           placeholder={placeholder}
           name={name}
           onChange={onChange}
+          value={value}
+          required
         />
         {isPassword && (
           <button

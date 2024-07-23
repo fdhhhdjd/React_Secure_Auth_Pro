@@ -14,6 +14,7 @@ import useAppSelector from '@/hooks/useAppSelector';
 
 import { RoutePaths } from '@/configs';
 import { HttpStatusCode } from '@/constants';
+import { isValidPassword, isValueEmpty } from '@/helpers';
 import { showToastWarning } from '@/utils';
 
 const AuthResetPassForm = () => {
@@ -36,6 +37,17 @@ const AuthResetPassForm = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
+
+    if (isValueEmpty(state)) {
+      return showToastWarning('Please enter full input!');
+    }
+
+    if (!isValidPassword(state.password)) {
+      return showToastWarning(
+        'Must to have at least 6 characters, 1 lowercase, 1 uppercase and 1 number.'
+      );
+    }
+
     if (state.password !== state.re_password) {
       return showToastWarning('Passwords do not match.');
     }
@@ -57,8 +69,10 @@ const AuthResetPassForm = () => {
           type='password'
           placeholder='••••••••'
           name={state.password}
+          value={state.password}
           onChange={handleChange}
           isPassword
+          autoFocus
         />
         <InputField
           id='re_password'
@@ -66,6 +80,7 @@ const AuthResetPassForm = () => {
           type='password'
           placeholder='••••••••'
           name={state.re_password}
+          value={state.re_password}
           onChange={handleChange}
           isPassword
         />
