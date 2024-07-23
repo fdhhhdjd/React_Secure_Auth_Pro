@@ -1,4 +1,9 @@
-import { UserRedux, getProfile, logoutUser } from '@/features/users/userThunk';
+import {
+  UserRedux,
+  changePassword,
+  getProfile,
+  logoutUser
+} from '@/features/users/userThunk';
 
 import { USER_KEYS } from '@/configs';
 import { handleErrorCode, removeItem } from '@/utils';
@@ -38,6 +43,14 @@ const userSlice = createSlice({
       .addCase(getProfile.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload.metadata;
+      })
+
+      //* Change Password
+      .addCase(changePassword.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(changePassword.fulfilled, (state, __) => {
+        state.isLoading = false;
       })
 
       //* Handle Rejected Actions

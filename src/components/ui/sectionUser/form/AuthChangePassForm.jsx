@@ -10,8 +10,7 @@ const AuthChangePassForm = () => {
   const { isLoading } = useAppSelector(state => state.auth);
 
   const [state, setState] = React.useState({
-    password: '',
-    re_password: ''
+    password: ''
   });
 
   const handleChange = e => {
@@ -29,7 +28,7 @@ const AuthChangePassForm = () => {
       <FormSubmit className='space-y-4 md:space-y-6' onSubmit={handleSubmit}>
         <InputField
           id='password'
-          label='New'
+          label='Change Password'
           type='password'
           placeholder='••••••••'
           name={state.password}

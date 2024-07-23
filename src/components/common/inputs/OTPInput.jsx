@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 
+import { showToastWarning } from '@/utils';
+
 const OTPInput = ({ length, onComplete, resetFlag }) => {
   const [inputs, setInputs] = React.useState(Array(length).fill(''));
   const inputRefs = React.useRef([]);
@@ -37,6 +39,28 @@ const OTPInput = ({ length, onComplete, resetFlag }) => {
     }
   };
 
+  const handlePaste = e => {
+    e.preventDefault();
+    const pasteData = e.clipboardData.getData('text').slice(0, length);
+    if (/^\d+$/.test(pasteData)) {
+      const newInputs = [...inputs]; // Copy current inputs
+      // Loop through paste data and fill inputs up to the length
+      for (let i = 0; i < pasteData.length; i++) {
+        newInputs[i] = pasteData[i];
+      }
+      setInputs(newInputs);
+      // If paste data fills all inputs, call onComplete
+      if (pasteData.length === length) {
+        onComplete(newInputs.join(''));
+      } else {
+        // Focus the next empty input after paste
+        inputRefs.current[pasteData.length].focus();
+      }
+    } else {
+      showToastWarning('Pasted data contains invalid characters.');
+    }
+  };
+
   const handleKeyDown = (e, index) => {
     if (e.key === 'Backspace' && !inputs[index] && index > 0) {
       inputRefs.current[index - 1].focus();
@@ -54,6 +78,7 @@ const OTPInput = ({ length, onComplete, resetFlag }) => {
           value={input}
           onChange={e => handleChange(e.target.value, index)}
           onKeyDown={e => handleKeyDown(e, index)}
+          onPaste={handlePaste}
           type='text'
           inputMode='numeric'
           autoComplete='off'

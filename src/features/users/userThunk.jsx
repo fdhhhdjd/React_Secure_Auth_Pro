@@ -41,3 +41,15 @@ export const twoFactorAuth = createAsyncThunk(
     }
   }
 );
+
+export const changePassword = createAsyncThunk(
+  `${UserRedux.Users}/change-password`,
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await postAxios('/user/change-pass', data);
+      return response;
+    } catch (error) {
+      return rejectWithValue(handleError(error));
+    }
+  }
+);

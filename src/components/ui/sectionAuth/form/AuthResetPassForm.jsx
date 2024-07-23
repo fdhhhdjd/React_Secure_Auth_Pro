@@ -36,7 +36,7 @@ const AuthResetPassForm = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    if (state.password !== state.rePassword) {
+    if (state.password !== state.re_password) {
       return showToastWarning('Passwords do not match.');
     }
     const resultRedux = await dispatch(
