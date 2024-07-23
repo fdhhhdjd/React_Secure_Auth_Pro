@@ -8,7 +8,7 @@ import User from '@/assets/images/user.jpg';
 import ConditionalLink from '@/components/common/links/ConditionalLink';
 import { logoutUser } from '@/features/users/userThunk';
 
-import { links, RoutePaths } from '@/configs';
+import { linkDropdown, links } from '@/configs';
 import { Redirect } from '@/utils';
 
 const Header = () => {
@@ -57,31 +57,16 @@ const Header = () => {
 
             {dropdownOpen && (
               <div className='origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none'>
-                <div className='py-1'>
-                  <button
-                    className='block px-4 py-2 text-sm text-black-700 hover:bg-black-100'
-                    onClick={() => Navigate(RoutePaths.USER.BASE)}
-                  >
-                    Profile
-                  </button>
-                </div>
-                <div className='py-1'>
-                  <button
-                    className='block px-4 py-2 text-sm text-black-700 hover:bg-black-100'
-                    onClick={() => Navigate(RoutePaths.USER.CHANGE_PASSWORD)}
-                  >
-                    Change Password
-                  </button>
-                </div>
-                <div className='py-1'>
-                  <button
-                    className='block px-4 py-2 text-sm text-black-700 hover:bg-black-100'
-                    onClick={() => Navigate(RoutePaths.USER.SETTINGS)}
-                  >
-                    Settings
-                  </button>
-                </div>
-
+                {linkDropdown.map(link => (
+                  <div className='py-1'>
+                    <button
+                      className='block px-4 py-2 text-sm text-black-700 hover:bg-black-100'
+                      onClick={() => Navigate(link.to)}
+                    >
+                      {link.label}
+                    </button>
+                  </div>
+                ))}
                 <div className='py-1'>
                   <button
                     className='block px-4 py-2 text-sm text-black-700 hover:bg-black-100'

@@ -8,6 +8,7 @@ import { getProfile } from '@/features/users/userThunk';
 import useAppSelector from '@/hooks/useAppSelector';
 
 import { USER_KEYS } from '@/configs';
+import { cn } from '@/helpers';
 import { convertGender, getItem } from '@/utils';
 
 const Profile = () => {
@@ -28,7 +29,12 @@ const Profile = () => {
 
   return (
     <React.Fragment>
-      <div className='relative max-w-md mx-auto md:max-w-2xl mt-32 min-w-0 break-words bg-slate-50 w-full mb-6 shadow-lg rounded-xl'>
+      <div
+        className={cn(
+          'relative max-w-md mx-auto md:max-w-2xl mt-32 min-w-0 break-words w-full mb-6  rounded-xl',
+          !isLoading && 'bg-slate-50 shadow-lg'
+        )}
+      >
         {isLoading ? (
           <LoadingSpinner />
         ) : (
